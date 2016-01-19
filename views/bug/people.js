@@ -33,7 +33,7 @@ var People = React.createClass({
     });
   },
 
-  _renderPerson(person) {
+  _renderPerson(text, person) {
     return (
       <TouchableHighlight
         onPress={this._onPressPerson.bind(null, person.email)}
@@ -41,7 +41,7 @@ var People = React.createClass({
         underlayColor="#E97D1F">
         <View style={styles.person}>
           <ProfileImage email={person.email} style={styles.thumbnail} />
-          <Text style={styles.personText}>Assigned to {person.real_name}</Text>
+          <Text style={styles.personText}>{text} {person.real_name}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -50,8 +50,8 @@ var People = React.createClass({
   render() {
     return (
       <View style={[card, styles.people]}>
-        {this._renderPerson(this.props.assigned_to_detail)}
-        {this._renderPerson(this.props.creator_detail)}
+        {this._renderPerson("Assigned to", this.props.assigned_to_detail)}
+        {this._renderPerson("Created by", this.props.creator_detail)}
       </View>
     );
   }
