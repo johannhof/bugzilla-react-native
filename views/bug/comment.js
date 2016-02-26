@@ -10,6 +10,12 @@ const {
 
 var Comments = React.createClass({
   displayName: "Comments",
+  
+  propTypes: {
+    author: React.PropTypes.string.isRequired,
+    time: React.PropTypes.string,
+    text: React.PropTypes.string.isRequired
+  },
 
   render() {
     return (

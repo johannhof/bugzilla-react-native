@@ -59,7 +59,7 @@ var styles = StyleSheet.create({
     paddingLeft: 16,
     borderStyle: "solid",
     borderBottomColor: "#D6D4D4",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   detailContainer: {
     flexDirection: 'row'

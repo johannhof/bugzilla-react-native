@@ -15,6 +15,10 @@ const {
 const HomeView = React.createClass({
   displayName: 'HomeView',
 
+  propTypes: {
+    toRoute: React.PropTypes.func.isRequired
+  },
+
   getInitialState() {
     return {
       selectedTab: 'assigned'

@@ -7,12 +7,14 @@ const {
   ScrollView,
   View,
   Text,
-  StyleSheet,
+  StyleSheet
 } = React;
 
 const window = Dimensions.get('window');
 
 const Menu = React.createClass({
+  displayName: 'Menu',
+
   render() {
     return (
       <View style={styles.menu}>
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     marginVertical: 15
   },
   selected: {
-    fontWeight: '500',
+    fontWeight: '500'
   },
   savedSearches: {
     color: 'white',
