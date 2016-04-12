@@ -15,6 +15,7 @@ const BugListItem  = React.createClass({
     summary: React.PropTypes.string.isRequired,
     component: React.PropTypes.string,
     id: React.PropTypes.number.isRequired,
+    is_open: React.PropTypes.bool,
     cc: React.PropTypes.array.isRequired,
     toRoute: React.PropTypes.func.isRequired
   },
@@ -31,7 +32,9 @@ const BugListItem  = React.createClass({
     return (
       <TouchableHighlight onPress={this._onPress} underlayColor="#E97D1F">
         <View style={styles.row}>
-          <Text style={styles.summary}>
+          <Text style={[styles.summary, {
+            textDecorationLine: this.props.is_open === false ?  'line-through' : "none"
+          }]}>
             {this.props.summary}
           </Text>
           <View style={styles.detailContainer}>
