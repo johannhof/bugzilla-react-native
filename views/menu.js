@@ -20,7 +20,7 @@ const Menu = React.createClass({
       <View style={styles.menu}>
         <Icon style={styles.settings} name="ios-gear" size={30} color="#FFF" />
         <View style={styles.header}>
-          <ProfileImage style={styles.thumbnail} email={"mail@johann-hofmann.com"} />
+          <ProfileImage style={styles.thumbnail} email={"jhofmann@mozilla.com"} />
           <Text style={styles.username}>Johann Hofmann [:johannh]</Text>
         </View>
         <ScrollView scrollsToTop={false} style={styles.list}>

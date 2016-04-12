@@ -64,7 +64,6 @@ var styles = StyleSheet.create({
   },
   person: {
     padding: 7,
-    minHeight: 50,
     flexDirection: 'row',
     justifyContent: 'center'
   },
@@ -83,9 +82,6 @@ var styles = StyleSheet.create({
     flex: 1,
     borderRadius: 10,
     marginRight: 5,
-    maxWidth: 50,
-    minHeight: 50,
-    maxHeight: 50
   }
 });
 

@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   id: {
     flex: 1,
     fontWeight: "300",
-    color: '9C9B9B',
+    color: '#9C9B9B',
     fontSize: 12
   },
   numbers: {

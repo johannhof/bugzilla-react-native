@@ -1,5 +1,5 @@
 import React from "react-native";
-import Router from 'gb-native-router';
+import Router from 'react-native-simple-router';
 import Home from './views/home';
 import Search from './views/search';
 import SideMenu from 'react-native-side-menu';
