@@ -79,9 +79,10 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
   thumbnail: {
-    flex: 1,
     borderRadius: 10,
     marginRight: 5,
+    width: 45,
+    height: 45,
   }
 });
 
