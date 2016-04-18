@@ -3,6 +3,7 @@ import assigned from '../assigned_bugs';
 import created from '../created_bugs';
 import flags from '../flags';
 import BugList from "./bug_list";
+import FlagList from "./flag_list";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const {
@@ -62,6 +63,9 @@ const HomeView = React.createClass({
             selected={this.state.selectedTab === 'flags'}
             onPress={() => this.setState({ selectedTab: 'flags' }) }>
             <View style={styles.listView}>
+              <FlagList
+                sourceStream={flags}
+                toRoute={this.props.toRoute} />
             </View>
           </Icon.TabBarItem>
         </TabBarIOS>
