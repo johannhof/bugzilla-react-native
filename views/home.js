@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import assigned from '../assigned_bugs';
 import created from '../created_bugs';
@@ -42,7 +43,7 @@ const HomeView = React.createClass({
             onPress={() => this.setState({ selectedTab: 'created' }) }>
             <View style={styles.listView}>
               <BugList
-                sourceStream={created}
+                source={created}
                 toRoute={this.props.toRoute} />
             </View>
           </Icon.TabBarItem>
@@ -53,7 +54,7 @@ const HomeView = React.createClass({
             onPress={() => this.setState({ selectedTab: 'assigned' }) }>
             <View style={styles.listView}>
               <BugList
-                sourceStream={assigned}
+                source={assigned}
                 toRoute={this.props.toRoute} />
             </View>
           </Icon.TabBarItem>
@@ -64,7 +65,7 @@ const HomeView = React.createClass({
             onPress={() => this.setState({ selectedTab: 'flags' }) }>
             <View style={styles.listView}>
               <FlagList
-                sourceStream={flags}
+                source={flags}
                 toRoute={this.props.toRoute} />
             </View>
           </Icon.TabBarItem>

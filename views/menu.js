@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import ProfileImage from './profile_image';
 import Icon from 'react-native-vector-icons/Ionicons';

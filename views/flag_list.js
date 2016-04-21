@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import BugListItem from './bug_list_item';
 
@@ -6,13 +7,10 @@ const {
   ActivityIndicatorIOS
 } = React;
 
-var FlagList = React.createClass({
-  displayName: 'FlagList',
-
+const FlagList = React.createClass({
   propTypes: {
-    ids: React.PropTypes.array,
-    sourceStream: React.PropTypes.object,
-    toRoute: React.PropTypes.func
+    source: React.PropTypes.object.isRequired,
+    toRoute: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -23,32 +21,29 @@ var FlagList = React.createClass({
     };
   },
 
-  async componentWillMount() {
-    if (this.props.sourceStream) {
-      this.props.sourceStream.subscribe(bugs => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(bugs)
-        });
+  componentWillMount() {
+    this.props.source.subscribe(bugs => {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(bugs)
       });
-    }
+    });
   },
 
-  // TODO: use a FlagListItem or so (with individual style) instead of BugListItem
   render() {
     if (this.state.dataSource.getRowCount() === 0) {
       return (
         <ActivityIndicatorIOS
-          animating={true}
-          style={{height: 80}}
-          size="large"
+        animating={true}
+        style={{height: 80}}
+        size="large"
         />
       );
     }
     return (
       <ListView
-        dataSource={this.state.dataSource}
-        renderRow={ flag => <BugListItem toRoute={this.props.toRoute} {...flag.bug} /> }
-        />
+      dataSource={this.state.dataSource}
+      renderRow={ flag => <BugListItem toRoute={this.props.toRoute} {...flag.bug} /> }
+      />
     );
   }
 });

@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import Router from 'react-native-simple-router';
 import Home from './views/home';
@@ -15,12 +16,11 @@ const {
   View
 } = React;
 
-
 var SearchBar = React.createClass({
   displayName: 'SearchBar',
 
   propTypes: {
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func.isRequired
   },
 
   render() {

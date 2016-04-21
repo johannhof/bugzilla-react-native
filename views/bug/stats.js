@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import BugList from "../bug_list";
 import UserList from "../user_list";

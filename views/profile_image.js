@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import md5 from "md5";
 

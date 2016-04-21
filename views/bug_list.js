@@ -1,22 +1,20 @@
+/* @flow */
 import React from "react-native";
 import BugListItem from './bug_list_item';
+import {fetchBugs} from '../bugzilla';
 
 const {
   ListView,
   ActivityIndicatorIOS
 } = React;
 
-const fetchBugs = function(bugs) {
-  return fetch(`https://bugzilla.mozilla.org/rest/bug?id=${bugs.join(',')}`).then(res => res.json());
-};
-
-var BugList = React.createClass({
-  displayName: 'BugList',
-
+const BugList = React.createClass({
   propTypes: {
-    ids: React.PropTypes.array,
-    sourceStream: React.PropTypes.object,
-    toRoute: React.PropTypes.func
+    source: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.object
+    ]).isRequired,
+    toRoute: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -27,17 +25,18 @@ var BugList = React.createClass({
     };
   },
 
-  async componentWillMount() {
-    if (this.props.sourceStream) {
-      this.props.sourceStream.subscribe(bugs => {
+  componentWillMount() {
+    if (Array.isArray(this.props.source)) {
+      fetchBugs(this.props.source).then(bugs => {
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(bugs)
         });
       });
-    } else {
-      let {bugs} = await fetchBugs(this.props.ids);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(bugs)
+    } else if (this.props.source != null) {
+      this.props.source.subscribe(bugs => {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(bugs)
+        });
       });
     }
   },
@@ -46,17 +45,17 @@ var BugList = React.createClass({
     if (this.state.dataSource.getRowCount() === 0) {
       return (
         <ActivityIndicatorIOS
-          animating={true}
-          style={{height: 80}}
-          size="large"
+        animating={true}
+        style={{height: 80}}
+        size="large"
         />
       );
     }
     return (
       <ListView
-        dataSource={this.state.dataSource}
-        renderRow={ bug => <BugListItem toRoute={this.props.toRoute} {...bug} /> }
-        />
+      dataSource={this.state.dataSource}
+      renderRow={ bug => <BugListItem toRoute={this.props.toRoute} {...bug} /> }
+      />
     );
   }
 });

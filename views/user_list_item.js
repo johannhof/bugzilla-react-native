@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import User from './user';
 

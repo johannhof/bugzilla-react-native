@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import Title from './title';
 import People from './people';
@@ -13,7 +14,7 @@ const {
   StyleSheet
 } = React;
 
-var BugView = React.createClass({
+const BugView = React.createClass({
   displayName: "Bug",
 
   getInitialState() {
@@ -89,7 +90,7 @@ var BugView = React.createClass({
   }
 });
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   sectionHeader: {
     fontSize: 16,
     paddingVertical: 5,

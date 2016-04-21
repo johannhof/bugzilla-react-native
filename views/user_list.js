@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react-native";
 import UserListItem from './user_list_item';
 
