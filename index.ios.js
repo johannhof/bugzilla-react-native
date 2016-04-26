@@ -6,6 +6,8 @@ import Search from './views/search';
 import SideMenu from 'react-native-side-menu';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Menu from './views/menu';
+import Login from './views/login';
+import user from './user';
 import {Mixin as EmitterMixin, events} from './emitter';
 
 const {
@@ -91,6 +93,7 @@ const router = React.createClass({
   componentWillMount() {
     // TODO attach off listener
     events.on('menuOpen', () => this._toggleMenu(true));
+    user.subscribe(user => this.setState({user}));
   },
 
   _toggleMenu(isOpen) {
@@ -98,8 +101,11 @@ const router = React.createClass({
   },
 
   render() {
+    if (!this.state.user) {
+      return <Login />;
+    }
     return (
-      <SideMenu onChange={this._toggleMenu} isOpen={this.state.menuOpen} menu={<Menu />}>
+      <SideMenu onChange={this._toggleMenu} isOpen={this.state.menuOpen} menu={<Menu user={this.state.user} />}>
         <Router
           headerStyle={styles.navbar}
           rightCorner={rightNavButtons}

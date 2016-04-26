@@ -1,5 +1,6 @@
 /* @flow */
 import Papa from "papaparse";
+import apiKey from "./credentials";
 
 export type Bug = {
   id: string
@@ -28,9 +29,11 @@ const FIELDS = [
 const STATUS_OPEN = "bug_status=UNCONFIRMED&bug_status=NEW&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED"
 
 export function fetchUser(): Promise<Array<Bug>> {
-  return fetch(`https://bugzilla.mozilla.org/rest/user/${USER_EMAIL}`)
+  return apiKey.filter(x => x).take(1)
+    .toPromise()
+    .then(key => fetch(`https://bugzilla.mozilla.org/rest/user/${USER_EMAIL}?api_key=${key}`))
     .then(res => res.json())
-    .then(({bugs}) => bugs);
+    .then(({users}) => users[0]);
 }
 
 export function fetchBugs(bugs: Array<String>): Promise<Array<Bug>> {

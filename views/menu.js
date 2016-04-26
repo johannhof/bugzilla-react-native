@@ -16,13 +16,20 @@ const window = Dimensions.get('window');
 const Menu = React.createClass({
   displayName: 'Menu',
 
+  propTypes: {
+    user: React.PropTypes.shape({
+      email: React.PropTypes.string.isRequired,
+      real_name: React.PropTypes.string.isRequired
+    }).isRequired
+  },
+
   render() {
     return (
       <View style={styles.menu}>
         <Icon style={styles.settings} name="ios-gear" size={30} color="#FFF" />
         <View style={styles.header}>
-          <ProfileImage style={styles.thumbnail} email={"jhofmann@mozilla.com"} />
-          <Text style={styles.username}>Johann Hofmann [:johannh]</Text>
+          <ProfileImage style={styles.thumbnail} email={this.props.user.email} />
+          <Text style={styles.username}>{this.props.user.real_name}</Text>
         </View>
         <ScrollView scrollsToTop={false} style={styles.list}>
           <Text style={[styles.item, styles.selected]}>My Bugs</Text>
