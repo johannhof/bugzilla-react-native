@@ -69,3 +69,15 @@ export function fetchFlags(user: ?string): Promise<Array<Flag>> {
       });
     });
 }
+
+export function search(search: string): Promise<Array<Bug>> {
+  return fetch(`https://bugzilla.mozilla.org/rest/bug?include_fields=${FIELDS}&quicksearch=${search}&limit=30`)
+    .then(res => res.json())
+    .then(({bugs}) => bugs);
+}
+
+export function searchURL(url: string): Promise<Array<Bug>> {
+  return fetch(`https://bugzilla.mozilla.org/rest/bug?include_fields=${FIELDS}&${decodeURIComponent(url)}`)
+    .then(res => res.json())
+    .then(({bugs}) => bugs);
+}

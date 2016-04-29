@@ -9,6 +9,7 @@ import Menu from './views/menu';
 import Login from './views/login';
 import user from './user';
 import {Mixin as EmitterMixin, events} from './emitter';
+import SearchBar from "./views/navigation/search_bar";
 
 const {
   AppRegistry,
@@ -17,26 +18,6 @@ const {
   TouchableHighlight,
   View
 } = React;
-
-var SearchBar = React.createClass({
-  displayName: 'SearchBar',
-
-  propTypes: {
-    onChange: React.PropTypes.func.isRequired
-  },
-
-  render() {
-    return (
-      <TextInput
-        style={styles.input}
-        autoFocus={true}
-        autoCorrect={false}
-        autoCapitalize="none"
-        onChangeText={(text) => this.props.onChange(text)}
-        placeholder="Search Bugzilla" />
-    );
-  }
-});
 
 // TODO rename
 const leftNavButtons = React.createClass({
@@ -96,6 +77,11 @@ const router = React.createClass({
     user.subscribe(user => this.setState({user}));
   },
 
+  toRoute(options) {
+    this.refs.router.toRoute(options);
+    this.setState({menuOpen: false});
+  },
+
   _toggleMenu(isOpen) {
     this.setState({menuOpen: isOpen});
   },
@@ -105,8 +91,12 @@ const router = React.createClass({
       return <Login />;
     }
     return (
-      <SideMenu onChange={this._toggleMenu} isOpen={this.state.menuOpen} menu={<Menu user={this.state.user} />}>
+      <SideMenu
+        onChange={this._toggleMenu}
+        isOpen={this.state.menuOpen}
+        menu={<Menu toRoute={this.toRoute} user={this.state.user} />} >
         <Router
+          ref="router"
           headerStyle={styles.navbar}
           rightCorner={rightNavButtons}
           firstRoute={{
@@ -130,15 +120,6 @@ const styles = StyleSheet.create({
   },
   rightNavButtons: {
     flexDirection: 'row'
-  },
-  input: {
-    backgroundColor: '#F5A623',
-    width: 220,
-    height: 32,
-    marginTop: 6,
-    paddingLeft: 10,
-    color: 'white',
-    borderRadius: 4
   }
 });
 

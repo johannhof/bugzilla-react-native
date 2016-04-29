@@ -1,10 +1,15 @@
 /* @flow */
+import Rx from "rxjs/Rx";
 import React from "react-native";
 import ProfileImage from './profile_image';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Search from './search';
+import BugList from "./bug_list";
+import {searchURL} from "../bugzilla";
 
 const {
   Dimensions,
+  TouchableHighlight,
   ScrollView,
   View,
   Text,
@@ -17,10 +22,21 @@ const Menu = React.createClass({
   displayName: 'Menu',
 
   propTypes: {
+    toRoute: React.PropTypes.func.isRequired,
     user: React.PropTypes.shape({
       email: React.PropTypes.string.isRequired,
       real_name: React.PropTypes.string.isRequired
     }).isRequired
+  },
+
+  goToSearch({name, url}) {
+    let source = Rx.Observable.fromPromise(searchURL(url));
+    this.props.toRoute({
+      name: name,
+      component: BugList,
+      passProps: { source },
+      sceneConfig: null
+    });
   },
 
   render() {
@@ -35,8 +51,17 @@ const Menu = React.createClass({
           <Text style={[styles.item, styles.selected]}>My Bugs</Text>
           <Text style={styles.item}>Browse</Text>
           <Text style={styles.savedSearches}>Saved Searches</Text>
-          <Text style={styles.item}>Webextensions</Text>
-          <Text style={styles.item}>DevTools</Text>
+          <View>
+            {this.props.user.saved_searches.map((search) => {
+              return (
+                <TouchableHighlight key={search.id} onPress={this.goToSearch.bind(this, search)} underlayColor="#E97D1F">
+                  <Text style={styles.item}>
+                    {search.name}
+                  </Text>
+                </TouchableHighlight>
+              );
+            })}
+          </View>
         </ScrollView>
       </View>
     );

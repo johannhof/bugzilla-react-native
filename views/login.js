@@ -12,6 +12,10 @@ const {
 const LoginView = React.createClass({
   displayName: 'LoginView',
 
+  getInitialState() {
+    return {text: ""};
+  },
+
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +23,9 @@ const LoginView = React.createClass({
           <Text>Enter your BMO API Key</Text>
           <TextInput
             style={styles.textBox}
-            onSubmitEditing={text => events.trigger("setApiKey", [text])}
+            onSubmitEditing={() => events.trigger("setApiKey", [this.state.text])}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
           />
         </View>
       </View>

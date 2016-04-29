@@ -27,7 +27,7 @@ var People = React.createClass({
       name: `${this.props.id} blocks`,
       component: BugList,
       passProps: {
-        ids: this.props.blocks,
+        source: this.props.blocks,
         toRoute: this.props.toRoute
       }
     });
@@ -38,7 +38,7 @@ var People = React.createClass({
       name: `${this.props.id} depends on`,
       component: BugList,
       passProps: {
-        ids: this.props.depends_on,
+        source: this.props.depends_on,
         toRoute: this.props.toRoute
       }
     });
