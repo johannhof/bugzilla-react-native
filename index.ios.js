@@ -98,6 +98,7 @@ const router = React.createClass({
         <Router
           ref="router"
           headerStyle={styles.navbar}
+          backButtonComponent={() => <Icon name="ios-arrow-back" style={styles.button} size={28} color="#FFF" />}
           rightCorner={rightNavButtons}
           firstRoute={{
             name: "Bugzilla",
