@@ -1,10 +1,10 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 
-const {
+import {
   StyleSheet,
   TextInput
-} = React;
+} from "react-native";
 
 const SearchBar = React.createClass({
   displayName: 'SearchBar',

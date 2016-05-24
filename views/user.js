@@ -1,12 +1,12 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import ProfileImage from './profile_image';
 
-const {
+import {
   StyleSheet,
   Text,
   View
-} = React;
+} from "react-native";
 
 const UserView = React.createClass({
   displayName: 'UserView',

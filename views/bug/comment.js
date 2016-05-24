@@ -1,13 +1,13 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import ProfileImage from '../profile_image';
 import {card} from './styles';
 
-const {
+import {
   StyleSheet,
   Text,
   View
-} = React;
+} from "react-native";
 
 var Comments = React.createClass({
   displayName: "Comments",

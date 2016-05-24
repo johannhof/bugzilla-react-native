@@ -1,10 +1,10 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import md5 from "md5";
 
-const {
+import {
   Image
-} = React;
+} from "react-native";
 
 var ProfileImage = React.createClass({
   displayName: 'ProfileImage',

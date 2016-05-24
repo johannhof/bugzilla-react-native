@@ -1,19 +1,22 @@
 /* @flow */
 import Rx from "rxjs/Rx";
-import {AsyncStorage} from "react-native";
 import {events} from "./emitter";
+import {saveJSON, loadJSON} from "./storage";
+import {setCredentials} from "./bugzilla";
 
-const storage = Rx.Observable.fromPromise(AsyncStorage.getItem("api_key"));
-const request = Rx.Observable.fromEvent(events, "setApiKey");
+const STORAGE_KEY = "credentials";
 
-const key = storage
-  .merge(request)
-  .do(function(key) {
-    if (key) {
-      AsyncStorage.setItem("api_key", key);
-    } else {
-      AsyncStorage.removeItem("api_key");
-    }
-  });
+const storage = Rx.Observable.from(loadJSON(STORAGE_KEY));
 
-export default key.publishBehavior(null).refCount();
+const login = Rx.Observable.fromEvent(events, "login");
+const logout = Rx.Observable.fromEvent(events, "logout").map(() => null);
+
+const credentials = storage
+  .merge(login)
+  .merge(logout)
+  .do(function(creds={}){
+    setCredentials(creds.key, creds.email)
+  })
+  .do((val) => saveJSON(STORAGE_KEY, val));
+
+export default credentials.publishBehavior(null).refCount();

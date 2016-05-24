@@ -1,33 +1,56 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import {events} from '../emitter';
 
-const {
+import {
   StyleSheet,
   Text,
   TextInput,
-  View
-} = React;
+  View,
+  TouchableHighlight
+} from "react-native";
 
 const LoginView = React.createClass({
   displayName: 'LoginView',
 
   getInitialState() {
-    return {text: ""};
+    return {
+      email: "",
+      key: ""
+    };
+  },
+
+  _submit() {
+    events.trigger("login", {
+      email: this.state.email,
+      key: this.state.key
+    });
   },
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.textBoxContainer}>
+          <Text>Enter your BMO username (your email)</Text>
+          <TextInput
+            autoCorrect={false}
+            autoCapitalize={'none'}
+            style={styles.textBox}
+            onChangeText={email => this.setState({email})}
+            value={this.state.email}
+          />
           <Text>Enter your BMO API Key</Text>
           <TextInput
             style={styles.textBox}
-            onSubmitEditing={() => events.trigger("setApiKey", [this.state.text])}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
+            onChangeText={key => this.setState({key})}
+            value={this.state.key}
           />
         </View>
+        <TouchableHighlight onPress={this._submit} underlayColor="#E97D1F">
+          <View>
+            <Text>Submit</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }

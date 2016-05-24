@@ -1,27 +1,23 @@
 /* @flow */
 import Rx from "rxjs/Rx";
-import {AsyncStorage} from "react-native";
 import {fetchUser} from "./bugzilla";
+import {events} from "./emitter";
+import credentials from "./credentials";
+import {saveJSON, loadJSON} from "./storage";
 
-const storage = Rx.Observable
-  .fromPromise(AsyncStorage.getItem("user"))
-  .map(function(json) {
-    if (json) {
-      return JSON.parse(json);
-    }
-  });
+const STORAGE_KEY = "user";
 
-const request = Rx.Observable
-  .fromPromise(fetchUser());
+const storage = Rx.Observable.from(loadJSON(STORAGE_KEY));
+
+const request = credentials.switchMap(function(creds) {
+  if (creds) {
+   return fetchUser();
+  }
+  return Promise.resolve(null);
+});
 
 const user = storage
   .merge(request)
-  .do(function(user) {
-    if (user) {
-      AsyncStorage.setItem("user", JSON.stringify(user));
-    } else {
-      AsyncStorage.removeItem("user");
-    }
-  });
+  .do((val) => saveJSON(STORAGE_KEY, val))
 
 export default user;

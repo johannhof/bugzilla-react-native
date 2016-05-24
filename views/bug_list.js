@@ -1,12 +1,12 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import BugListItem from './bug_list_item';
 import {fetchBugs} from '../bugzilla';
 
-const {
+import {
   ListView,
   ActivityIndicatorIOS
-} = React;
+} from "react-native";
 
 const BugList = React.createClass({
   propTypes: {

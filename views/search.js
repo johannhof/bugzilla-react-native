@@ -1,5 +1,5 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import Rx from "rxjs/Rx";
 import BugList from "./bug_list";
 import {search} from "../bugzilla";

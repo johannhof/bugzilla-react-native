@@ -1,15 +1,15 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import ProfileImage from '../profile_image';
 import User from '../user';
 import {card} from './styles';
 
-const {
+import {
   StyleSheet,
   Text,
   TouchableHighlight,
   View
-} = React;
+} from "react-native";
 
 var People = React.createClass({
   displayName: "People",

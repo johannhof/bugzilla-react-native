@@ -1,12 +1,12 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import {card} from './styles';
 
-const {
+import {
   StyleSheet,
   Text,
   View
-} = React;
+} from "react-native";
 
 var Title = React.createClass({
   displayName: "Title",

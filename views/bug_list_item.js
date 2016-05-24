@@ -1,13 +1,13 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import Bug from './bug/index';
 
-const {
+import {
   StyleSheet,
   Text,
   View,
   TouchableHighlight
-} = React;
+} from "react-native";
 
 const BugListItem  = React.createClass({
   displayName: "BugListItem",

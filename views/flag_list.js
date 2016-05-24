@@ -1,11 +1,11 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import BugListItem from './bug_list_item';
 
-const {
+import {
   ListView,
   ActivityIndicatorIOS
-} = React;
+} from "react-native";
 
 const FlagList = React.createClass({
   propTypes: {

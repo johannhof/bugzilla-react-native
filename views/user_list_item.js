@@ -1,13 +1,13 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import User from './user';
 
-const {
+import {
   StyleSheet,
   Text,
   View,
   TouchableHighlight
-} = React;
+} from "react-native";
 
 const UserListItem  = React.createClass({
   displayName: "UserListItem",

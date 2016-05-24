@@ -2,29 +2,19 @@
 import Rx from "rxjs/Rx";
 import {AsyncStorage} from "react-native";
 import {fetchAssignedBugs} from "./bugzilla";
-import type {Bug} from './bugzilla';
+import {saveJSON, loadJSON} from "./storage";
+import credentials from "./credentials";
 
-const storage = Rx.Observable
-  .fromPromise(AsyncStorage.getItem("assigned_bugs"))
-  .map(function(json: ?string): Array<Bug> {
-    if (json) {
-      return JSON.parse(json);
-    }
+const STORAGE_KEY = "assigned_bugs";
 
-    return [];
-  });
+const storage = Rx.Observable.from(loadJSON(STORAGE_KEY, []));
 
-const request = Rx.Observable
-  .fromPromise(fetchAssignedBugs());
+const request = credentials.filter(x => x).switchMap(function({email}) {
+ return fetchAssignedBugs(email);
+});
 
 const assigned = storage
   .merge(request)
-  .do(function(list: ?Array<Bug>) {
-    if (list) {
-      AsyncStorage.setItem("assigned_bugs", JSON.stringify(list));
-    } else {
-      AsyncStorage.removeItem("assigned_bugs");
-    }
-  });
+  .do((val) => saveJSON(STORAGE_KEY, val))
 
 export default assigned;

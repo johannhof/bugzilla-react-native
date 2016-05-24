@@ -1,10 +1,10 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import UserListItem from './user_list_item';
 
-const {
+import {
   ListView
-} = React;
+} from "react-native";
 
 var UserList = React.createClass({
   displayName: 'UserList',

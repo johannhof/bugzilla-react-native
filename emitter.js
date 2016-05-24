@@ -10,16 +10,14 @@ Emitter.prototype.off = function(subject){
   delete this.listeners[subject];
 };
 
-Emitter.prototype.trigger = function(subject, args){
+Emitter.prototype.trigger = function(subject, ...args){
   this.listeners[subject] && this.listeners[subject].apply(null, args);
 };
 
-export const events = new Emitter();
-
-export const Mixin = {
-  emit(subject, ...args){
-    return function(...args2){
-      events.trigger(subject, args.concat(args2));
-    };
-  }
+Emitter.prototype.emit = function(subject, ...args){
+  return (...args2) => {
+    this.trigger(subject, ...args.concat(args2));
+  };
 };
+
+export const events = new Emitter();

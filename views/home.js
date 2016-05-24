@@ -1,5 +1,5 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import assigned from '../assigned_bugs';
 import created from '../created_bugs';
 import flags from '../flags';
@@ -7,12 +7,11 @@ import BugList from "./bug_list";
 import FlagList from "./flag_list";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const {
+import {
   StyleSheet,
-  Text,
   View,
   TabBarIOS
-} = React;
+} from "react-native";
 
 const HomeView = React.createClass({
   displayName: 'HomeView',
@@ -30,9 +29,6 @@ const HomeView = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.titleBox}>
-          <Text style={styles.title}>My Bugs</Text>
-        </View>
         <TabBarIOS
           style={styles.tabBar}
           tintColor="#E97D1F">
@@ -80,22 +76,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F5FCFF"
   },
-  titleBox: {
-    height: 50,
-    alignSelf: "stretch",
-    justifyContent: "center",
-    alignItems: "center",
-    borderStyle: "solid",
-    borderBottomColor: "#D6D4D4",
-    borderBottomWidth: 1,
-    backgroundColor: '#F0F0F0'
-  },
   title: {
     fontSize: 22,
     fontWeight: "300"
   },
   listView: {
-    alignSelf: "stretch"
+    flex: 1
   }
 });
 

@@ -1,20 +1,21 @@
 /* @flow */
 import Rx from "rxjs/Rx";
-import React from "react-native";
+import React from "react";
 import ProfileImage from './profile_image';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Search from './search';
 import BugList from "./bug_list";
+import Settings from "./settings";
 import {searchURL} from "../bugzilla";
 
-const {
+import {
   Dimensions,
   TouchableHighlight,
   ScrollView,
   View,
   Text,
   StyleSheet
-} = React;
+} from "react-native";
 
 const window = Dimensions.get('window');
 
@@ -39,10 +40,19 @@ const Menu = React.createClass({
     });
   },
 
+  goToSettings() {
+    this.props.toRoute({
+      name: "Settings",
+      component: Settings
+    });
+  },
+
   render() {
     return (
       <View style={styles.menu}>
-        <Icon style={styles.settings} name="ios-gear" size={30} color="#FFF" />
+        <TouchableHighlight onPress={this.goToSettings} underlayColor="#E97D1F">
+          <Icon style={styles.settings} name="ios-gear" size={30} color="#FFF" />
+        </TouchableHighlight>
         <View style={styles.header}>
           <ProfileImage style={styles.thumbnail} email={this.props.user.email} />
           <Text style={styles.username}>{this.props.user.real_name}</Text>

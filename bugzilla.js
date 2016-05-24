@@ -1,6 +1,6 @@
 /* @flow */
 import Papa from "papaparse";
-import apiKey from "./credentials";
+import credentials from "./credentials";
 
 export type Bug = {
   id: string
@@ -10,7 +10,11 @@ export type Flag = {
   bug: Bug
 };
 
-const USER_EMAIL = "jhofmann@mozilla.com";
+export type User = {
+  name: string
+};
+
+const BASE_URL = "https://bugzilla.mozilla.org";
 
 const FIELDS = [
   "summary",
@@ -28,34 +32,41 @@ const FIELDS = [
 
 const STATUS_OPEN = "bug_status=UNCONFIRMED&bug_status=NEW&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED"
 
-export function fetchUser(): Promise<Array<Bug>> {
-  return apiKey.filter(x => x).take(1)
-    .toPromise()
-    .then(key => fetch(`https://bugzilla.mozilla.org/rest/user/${USER_EMAIL}?api_key=${key}`))
+let key: ?string = null;
+let email: ?string = null;
+
+export function setCredentials(_key: ?string, _email: ?string) {
+  key = _key;
+  email = _email;
+}
+
+export function fetchUser(): Promise<User> {
+  return fetch(`${BASE_URL}/rest/user/${email}?api_key=${key}`)
     .then(res => res.json())
     .then(({users}) => users[0]);
 }
 
 export function fetchBugs(bugs: Array<String>): Promise<Array<Bug>> {
-  return fetch(`https://bugzilla.mozilla.org/rest/bug?include_fields=${FIELDS}&id=${bugs.join(',')}`)
+  return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&id=${bugs.join(',')}`)
     .then(res => res.json())
     .then(({bugs}) => bugs);
 }
 
-export function fetchAssignedBugs(user: ?string): Promise<Array<Bug>> {
-  return fetch(`https://bugzilla.mozilla.org/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${USER_EMAIL}`)
+export function fetchAssignedBugs(user: string): Promise<Array<Bug>> {
+  console.log("KEY!", key);
+  return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${user}&api_key=${key}`)
     .then(res => res.json())
     .then(({bugs}) => bugs);
 }
 
-export function fetchCreatedBugs(user: ?string): Promise<Array<Bug>> {
-  return fetch(`https://bugzilla.mozilla.org/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&creator=${USER_EMAIL}`)
+export function fetchCreatedBugs(user: string): Promise<Array<Bug>> {
+  return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&creator=${user}&api_key=${key}`)
     .then(res => res.json())
     .then(({bugs}) => bugs);
 }
 
-export function fetchFlags(user: ?string): Promise<Array<Flag>> {
-  return fetch(`https://bugzilla.mozilla.org/request.cgi?action=queue&do_union=1&group=type&requestee=${USER_EMAIL}&requester=${USER_EMAIL}&ctype=csv`)
+export function fetchFlags(user: string): Promise<Array<Flag>> {
+  return fetch(`${BASE_URL}/request.cgi?action=queue&do_union=1&group=type&requestee=${user}&requester=${user}&ctype=csv`)
     .then(res => res.text())
     .then(res => Papa.parse(res, {header: true}))
     .then(function({data}) {

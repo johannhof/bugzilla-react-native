@@ -1,5 +1,5 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import Router from 'react-native-simple-router';
 import Home from './views/home';
 import Search from './views/search';
@@ -8,27 +8,26 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Menu from './views/menu';
 import Login from './views/login';
 import user from './user';
-import {Mixin as EmitterMixin, events} from './emitter';
+import {events} from './emitter';
 import SearchBar from "./views/navigation/search_bar";
 
-const {
+import {
   AppRegistry,
   StyleSheet,
   TextInput,
   TouchableHighlight,
   View
-} = React;
+} from "react-native";
 
 // TODO rename
 const leftNavButtons = React.createClass({
   displayName: 'LeftNavButtons',
-  mixins: [EmitterMixin],
 
   render() {
     return (
       <View style={styles.rightNavButtons}>
         <TouchableHighlight underlayColor="transparent" onPress={this.goToSearch}>
-          <Icon onPress={this.emit('menuOpen')} style={styles.button} name="navicon" size={28} color="#FFF" />
+          <Icon onPress={events.emit('menuOpen')} style={styles.button} name="navicon" size={28} color="#FFF" />
         </TouchableHighlight>
       </View>
     );

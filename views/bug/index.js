@@ -1,18 +1,18 @@
 /* @flow */
-import React from "react-native";
+import React from "react";
 import Title from './title';
 import People from './people';
 import Stats from './stats';
 import Comment from './comment';
 import {container} from './styles';
 
-const {
+import {
   View,
   ListView,
   Text,
   ActivityIndicatorIOS,
   StyleSheet
-} = React;
+} from "react-native";
 
 const BugView = React.createClass({
   displayName: "Bug",
