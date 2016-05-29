@@ -1,30 +1,31 @@
 /* @flow */
 import React from "react";
-import Bug from "./bug/index";
-import Icon from "react-native-vector-icons/Ionicons";
+import Bug from './bug/index';
 
 import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
+  TouchableHighlight
 } from "react-native";
 
-const BugListItem  = React.createClass({
-  displayName: "BugListItem",
+const FlagListItem  = React.createClass({
+  displayName: "FlagListItem",
 
   propTypes: {
-    summary: React.PropTypes.string.isRequired,
-    component: React.PropTypes.string,
-    id: React.PropTypes.number.isRequired,
-    is_open: React.PropTypes.bool,
-    cc: React.PropTypes.array.isRequired,
+    "Flag": React.PropTypes.string,
+    "Status": React.PropTypes.string,
+    "Requestee": React.PropTypes.string,
+    bug: React.PropTypes.shape({
+      summary: React.PropTypes.string,
+      id: React.PropTypes.number,
+    }).isRequired,
     toRoute: React.PropTypes.func.isRequired,
   },
 
   _onPress: async function() {
     this.props.toRoute({
-      name: `Bug ${this.props.id}`,
+      name: `Bug ${this.props.bug.id}`,
       component: Bug,
       passProps: this.props,
     });
@@ -34,25 +35,16 @@ const BugListItem  = React.createClass({
     return (
       <TouchableHighlight onPress={this._onPress} underlayColor="#E97D1F">
         <View style={styles.row}>
-          <Text numberOfLines={1} style={[styles.summary, {
-            textDecorationLine: this.props.is_open === false ?  "line-through" : "none"
-          }]}>
-            {this.props.summary}
+          <Text numberOfLines={1} style={styles.head}>
+            {this.props["Flag"]}{" "}{this.props["Status"]}{" "}{this.props["Requestee"]}
           </Text>
           <View style={styles.detailContainer}>
-            <Text style={styles.component}>
-              {this.props.component}
+            <Text style={styles.summary}>
+              {this.props.bug.summary}
             </Text>
             <Text style={styles.id}>
-              {this.props.id}
+              {this.props.bug.id}
             </Text>
-            <View style={styles.numbers}>
-              <Text style={styles.id}>
-                <Icon name="ios-person" size={12} color="#9C9B9B" />
-                {" "}
-                {this.props.cc.length}
-              </Text>
-            </View>
           </View>
         </View>
       </TouchableHighlight>
@@ -72,28 +64,28 @@ var styles = StyleSheet.create({
   detailContainer: {
     flexDirection: "row",
   },
-  summary: {
+  head: {
     fontWeight: "500",
     fontSize: 15,
     paddingRight: 5,
     marginBottom: 5,
   },
-  component: {
-    flex: 4,
+  summary: {
+    flex: 5,
     fontWeight: "300",
     fontSize: 12,
   },
   id: {
-    flex: 2,
+    flex: 1,
     fontWeight: "300",
     color: "#9C9B9B",
     fontSize: 12,
   },
   numbers: {
-    flex: 5,
     paddingRight: 5,
     alignItems: "flex-end",
+    flex: 5,
   },
 });
 
-export default BugListItem;
+export default FlagListItem;

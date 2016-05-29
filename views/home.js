@@ -14,7 +14,7 @@ import {
 } from "react-native";
 
 const HomeView = React.createClass({
-  displayName: 'HomeView',
+  displayName: "HomeView",
 
   propTypes: {
     toRoute: React.PropTypes.func.isRequired
@@ -22,7 +22,7 @@ const HomeView = React.createClass({
 
   getInitialState() {
     return {
-      selectedTab: 'assigned'
+      selectedTab: "flags"
     };
   },
 
@@ -35,8 +35,8 @@ const HomeView = React.createClass({
           <Icon.TabBarItem
             title="Created"
             iconName="ios-plus"
-            selected={this.state.selectedTab === 'created'}
-            onPress={() => this.setState({ selectedTab: 'created' }) }>
+            selected={this.state.selectedTab === "created"}
+            onPress={() => this.setState({ selectedTab: "created" }) }>
             <View style={styles.listView}>
               <BugList
                 source={created}
@@ -46,8 +46,8 @@ const HomeView = React.createClass({
           <Icon.TabBarItem
             title="Assigned"
             iconName="ios-filing"
-            selected={this.state.selectedTab === 'assigned'}
-            onPress={() => this.setState({ selectedTab: 'assigned' }) }>
+            selected={this.state.selectedTab === "assigned"}
+            onPress={() => this.setState({ selectedTab: "assigned" }) }>
             <View style={styles.listView}>
               <BugList
                 source={assigned}
@@ -57,8 +57,8 @@ const HomeView = React.createClass({
           <Icon.TabBarItem
             title="Flags"
             iconName="ios-flag"
-            selected={this.state.selectedTab === 'flags'}
-            onPress={() => this.setState({ selectedTab: 'flags' }) }>
+            selected={this.state.selectedTab === "flags"}
+            onPress={() => this.setState({ selectedTab: "flags" }) }>
             <View style={styles.listView}>
               <FlagList
                 source={flags}

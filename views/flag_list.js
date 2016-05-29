@@ -1,6 +1,6 @@
 /* @flow */
 import React from "react";
-import BugListItem from './bug_list_item';
+import FlagListItem from "./flag_list_item";
 
 import {
   ListView,
@@ -42,7 +42,7 @@ const FlagList = React.createClass({
     return (
       <ListView
       dataSource={this.state.dataSource}
-      renderRow={ flag => <BugListItem toRoute={this.props.toRoute} {...flag.bug} /> }
+      renderRow={ flag => <FlagListItem toRoute={this.props.toRoute} {...flag} /> }
       />
     );
   }

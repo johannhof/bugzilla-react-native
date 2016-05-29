@@ -1,9 +1,8 @@
 /* @flow */
 import Rx from "rxjs/Rx";
 import React from "react";
-import ProfileImage from './profile_image';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Search from './search';
+import ProfileImage from "./profile_image";
+import Icon from "react-native-vector-icons/Ionicons";
 import BugList from "./bug_list";
 import Settings from "./settings";
 import {searchURL} from "../bugzilla";
@@ -17,16 +16,17 @@ import {
   StyleSheet
 } from "react-native";
 
-const window = Dimensions.get('window');
+const window = Dimensions.get("window");
 
 const Menu = React.createClass({
-  displayName: 'Menu',
+  displayName: "Menu",
 
   propTypes: {
     toRoute: React.PropTypes.func.isRequired,
     user: React.PropTypes.shape({
       email: React.PropTypes.string.isRequired,
-      real_name: React.PropTypes.string.isRequired
+      real_name: React.PropTypes.string.isRequired,
+      saved_searches: React.PropTypes.array.isRequired
     }).isRequired
   },
 
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: window.width,
     height: window.height,
-    backgroundColor: '#4A4A4A',
+    backgroundColor: "#4A4A4A",
     paddingLeft: 15,
     paddingTop: 30,
     paddingRight: window.width * (1 / 3) + 15
@@ -91,17 +91,17 @@ const styles = StyleSheet.create({
   settings: {
   },
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 20
   },
   username: {
-    fontWeight: '100',
+    fontWeight: "100",
     fontSize: 16,
-    color: 'white'
+    color: "white"
   },
   thumbnail: {
     borderRadius: 30,
-    borderColor: 'white',
+    borderColor: "white",
     borderWidth: 1,
     width: 60,
     height: 60,
@@ -111,19 +111,19 @@ const styles = StyleSheet.create({
     flex: 1
   },
   item: {
-    color: 'white',
+    color: "white",
     fontSize: 22,
-    fontWeight: '300',
+    fontWeight: "300",
     marginHorizontal: 5,
     marginVertical: 15
   },
   selected: {
-    fontWeight: '500'
+    fontWeight: "500"
   },
   savedSearches: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: '100',
+    fontWeight: "100",
     margin: 5,
     marginTop: 20,
     opacity: 0.7
