@@ -1,12 +1,12 @@
 /* @flow */
 import React from "react";
-import Bug from './bug/index';
+import Bug from "./bug/index";
 
 import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
 } from "react-native";
 
 const FlagListItem  = React.createClass({

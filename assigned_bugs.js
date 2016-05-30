@@ -1,6 +1,5 @@
 /* @flow */
 import Rx from "rxjs/Rx";
-import {AsyncStorage} from "react-native";
 import {fetchAssignedBugs} from "./bugzilla";
 import {saveJSON, loadJSON} from "./storage";
 import credentials from "./credentials";
@@ -15,6 +14,6 @@ const request = credentials.filter(x => x).switchMap(function({email}) {
 
 const assigned = storage
   .merge(request)
-  .do((val) => saveJSON(STORAGE_KEY, val))
+  .do((val) => saveJSON(STORAGE_KEY, val));
 
 export default assigned;

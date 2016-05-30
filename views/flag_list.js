@@ -4,27 +4,27 @@ import FlagListItem from "./flag_list_item";
 
 import {
   ListView,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
 } from "react-native";
 
 const FlagList = React.createClass({
   propTypes: {
     source: React.PropTypes.object.isRequired,
-    toRoute: React.PropTypes.func.isRequired
+    toRoute: React.PropTypes.func.isRequired,
   },
 
   getInitialState() {
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1.id !== row2.id
-      })
+        rowHasChanged: (row1, row2) => row1.id !== row2.id,
+      }),
     };
   },
 
   componentWillMount() {
     this.props.source.subscribe(bugs => {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(bugs)
+        dataSource: this.state.dataSource.cloneWithRows(bugs),
       });
     });
   },
@@ -45,7 +45,7 @@ const FlagList = React.createClass({
       renderRow={ flag => <FlagListItem toRoute={this.props.toRoute} {...flag} /> }
       />
     );
-  }
+  },
 });
 
 export default FlagList;

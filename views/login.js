@@ -1,29 +1,29 @@
 /* @flow */
 import React from "react";
-import {events} from '../emitter';
+import {events} from "../emitter";
 
 import {
   StyleSheet,
   Text,
   TextInput,
   View,
-  TouchableHighlight
+  TouchableHighlight,
 } from "react-native";
 
 const LoginView = React.createClass({
-  displayName: 'LoginView',
+  displayName: "LoginView",
 
   getInitialState() {
     return {
       email: "",
-      key: ""
+      key: "",
     };
   },
 
   _submit() {
     events.trigger("login", {
       email: this.state.email,
-      key: this.state.key
+      key: this.state.key,
     });
   },
 
@@ -53,23 +53,23 @@ const LoginView = React.createClass({
         </TouchableHighlight>
       </View>
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#F5FCFF",
   },
   textBoxContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   textBox: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1
-  }
+    borderColor: "gray",
+    borderWidth: 1,
+  },
 });
 
 export default LoginView;

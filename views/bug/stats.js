@@ -2,13 +2,13 @@
 import React from "react";
 import BugList from "../bug_list";
 import UserList from "../user_list";
-import {card} from './styles';
+import {card} from "./styles";
 
 import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
 } from "react-native";
 
 var People = React.createClass({
@@ -19,7 +19,7 @@ var People = React.createClass({
     blocks: React.PropTypes.array.isRequired,
     depends_on: React.PropTypes.array.isRequired,
     cc_detail: React.PropTypes.array.isRequired,
-    toRoute: React.PropTypes.func.isRequired
+    toRoute: React.PropTypes.func.isRequired,
   },
 
   _onPressBlocks() {
@@ -28,8 +28,8 @@ var People = React.createClass({
       component: BugList,
       passProps: {
         source: this.props.blocks,
-        toRoute: this.props.toRoute
-      }
+        toRoute: this.props.toRoute,
+      },
     });
   },
 
@@ -39,8 +39,8 @@ var People = React.createClass({
       component: BugList,
       passProps: {
         source: this.props.depends_on,
-        toRoute: this.props.toRoute
-      }
+        toRoute: this.props.toRoute,
+      },
     });
   },
 
@@ -50,8 +50,8 @@ var People = React.createClass({
       component: UserList,
       passProps: {
         users: this.props.cc_detail,
-        toRoute: this.props.toRoute
-      }
+        toRoute: this.props.toRoute,
+      },
     });
   },
 
@@ -69,26 +69,26 @@ var People = React.createClass({
         </TouchableHighlight>
       </View>
     );
-  }
+  },
 });
 
 var styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   block: {
     paddingVertical: 15,
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
     borderStyle: "solid",
     borderRightColor: "#F0F0F0",
-    borderRightWidth: 1
+    borderRightWidth: 1,
   },
   text: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default People;

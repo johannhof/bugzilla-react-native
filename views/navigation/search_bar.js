@@ -3,14 +3,15 @@ import React from "react";
 
 import {
   StyleSheet,
-  TextInput
+  TextInput,
 } from "react-native";
 
 const SearchBar = React.createClass({
-  displayName: 'SearchBar',
+  displayName: "SearchBar",
 
   propTypes: {
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    query: React.PropTypes.string,
   },
 
   componentWillMount() {
@@ -30,18 +31,18 @@ const SearchBar = React.createClass({
         onChangeText={(text) => this.props.onChange && this.props.onChange(text)}
         placeholder="Search Bugzilla" />
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: '#F5A623',
+    backgroundColor: "#F5A623",
     height: 32,
     marginTop: 6,
     paddingLeft: 10,
-    color: 'white',
-    borderRadius: 4
-  }
+    color: "white",
+    borderRadius: 4,
+  },
 });
 
 export default SearchBar;

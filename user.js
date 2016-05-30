@@ -1,7 +1,6 @@
 /* @flow */
 import Rx from "rxjs/Rx";
 import {fetchUser} from "./bugzilla";
-import {events} from "./emitter";
 import credentials from "./credentials";
 import {saveJSON, loadJSON} from "./storage";
 
@@ -18,6 +17,6 @@ const request = credentials.switchMap(function(creds) {
 
 const user = storage
   .merge(request)
-  .do((val) => saveJSON(STORAGE_KEY, val))
+  .do((val) => saveJSON(STORAGE_KEY, val));
 
 export default user;

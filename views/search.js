@@ -5,12 +5,12 @@ import BugList from "./bug_list";
 import {search} from "../bugzilla";
 
 const Search = React.createClass({
-  displayName: 'Search',
+  displayName: "Search",
 
   propTypes: {
     query: React.PropTypes.string,
     setTitleProps: React.PropTypes.func.isRequired,
-    toRoute: React.PropTypes.func.isRequired
+    toRoute: React.PropTypes.func.isRequired,
   },
 
   componentWillMount() {
@@ -20,23 +20,23 @@ const Search = React.createClass({
           h => {
               this.props.setTitleProps({
                 onChange: h,
-                query: this.props.query
+                query: this.props.query,
               });
           },
           () => null
       )
       .debounceTime(1000)
       .switchMap(query => search(query));
-    this.searchStream = searchStream;
+    this.setState({ searchStream });
   },
 
   render() {
     return (
       <BugList
-        source={this.searchStream}
+        source={this.state.searchStream}
         toRoute={this.props.toRoute} />
     );
-  }
+  },
 });
 
 export default Search;

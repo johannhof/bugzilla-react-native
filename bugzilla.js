@@ -1,6 +1,6 @@
 /* @flow */
 import Papa from "papaparse";
-import credentials from "./credentials";
+import {PropTypes} from "react";
 
 export type Bug = {
   id: string
@@ -11,7 +11,15 @@ export type Flag = {
 };
 
 export type User = {
-  name: string
+  name: string,
+  email: string,
+  real_name: string,
+};
+
+export const UserType = {
+  email: PropTypes.string.isRequired,
+  real_name: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 const BASE_URL = "https://bugzilla.mozilla.org";
@@ -27,10 +35,10 @@ const FIELDS = [
   "assigned_to",
   "creator",
   "blocks",
-  "depends_on"
-].join(',');
+  "depends_on",
+].join(",");
 
-const STATUS_OPEN = "bug_status=UNCONFIRMED&bug_status=NEW&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED"
+const STATUS_OPEN = "bug_status=UNCONFIRMED&bug_status=NEW&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED";
 
 let key: ?string = null;
 let email: ?string = null;
@@ -47,13 +55,12 @@ export function fetchUser(): Promise<User> {
 }
 
 export function fetchBugs(bugs: Array<String>): Promise<Array<Bug>> {
-  return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&id=${bugs.join(',')}`)
+  return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&id=${bugs.join(",")}`)
     .then(res => res.json())
     .then(({bugs}) => bugs);
 }
 
 export function fetchAssignedBugs(user: string): Promise<Array<Bug>> {
-  console.log("KEY!", key);
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${user}&api_key=${key}`)
     .then(res => res.json())
     .then(({bugs}) => bugs);

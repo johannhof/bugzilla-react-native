@@ -1,51 +1,48 @@
 /* @flow */
 import React from "react";
-import Router from 'react-native-simple-router';
-import Home from './views/home';
-import Search from './views/search';
-import SideMenu from 'react-native-side-menu';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Menu from './views/menu';
-import Login from './views/login';
-import user from './user';
-import {events} from './emitter';
+import Router from "react-native-simple-router";
+import Home from "./views/home";
+import Search from "./views/search";
+import SideMenu from "react-native-side-menu";
+import Icon from "react-native-vector-icons/Entypo";
+import Menu from "./views/menu";
+import Login from "./views/login";
+import user from "./user";
+import {events} from "./emitter";
 import SearchBar from "./views/navigation/search_bar";
 
 import {
   AppRegistry,
   StyleSheet,
-  TextInput,
   TouchableHighlight,
-  View
+  View,
 } from "react-native";
 
 // TODO rename
 const leftNavButtons = React.createClass({
-  displayName: 'LeftNavButtons',
+  displayName: "LeftNavButtons",
 
   render() {
     return (
       <View style={styles.rightNavButtons}>
-        <TouchableHighlight underlayColor="transparent" onPress={this.goToSearch}>
-          <Icon onPress={events.emit('menuOpen')} style={styles.button} name="navicon" size={28} color="#FFF" />
-        </TouchableHighlight>
+        <Icon onPress={events.emit("menuOpen")} style={styles.button} name="menu" size={28} color="#FFF" />
       </View>
     );
-  }
+  },
 });
 
 const rightNavButtons = React.createClass({
-  displayName: 'RightNavButtons',
+  displayName: "RightNavButtons",
 
   propTypes: {
-    toRoute: React.PropTypes.func.isRequired
+    toRoute: React.PropTypes.func.isRequired,
   },
 
   goToSearch() {
     this.props.toRoute({
       name: "Search",
       component: Search,
-      titleComponent: SearchBar
+      titleComponent: SearchBar,
     });
   },
 
@@ -53,26 +50,27 @@ const rightNavButtons = React.createClass({
     return (
       <View style={styles.rightNavButtons}>
         <TouchableHighlight underlayColor="transparent" onPress={this.goToSearch}>
-          <Icon style={styles.button} name="ios-search-strong" size={25} color="#FFF" />
+          <Icon style={styles.button} name="magnifying-glass" size={25} color="#FFF" />
         </TouchableHighlight>
         <Icon style={styles.button} name="plus" size={25} color="#FFF" />
       </View>
     );
-  }
+  },
 });
 
 const router = React.createClass({
-  displayName: 'Bugzilla Router',
+  displayName: "Bugzilla Router",
 
   getInitialState() {
     return {
-      menuOpen: false
+      menuOpen: false,
+      user: null,
     };
   },
 
   componentWillMount() {
     // TODO attach off listener
-    events.on('menuOpen', () => this._toggleMenu(true));
+    events.on("menuOpen", () => this._toggleMenu(true));
     user.subscribe(user => this.setState({user}));
   },
 
@@ -97,30 +95,30 @@ const router = React.createClass({
         <Router
           ref="router"
           headerStyle={styles.navbar}
-          backButtonComponent={() => <Icon name="ios-arrow-back" style={styles.button} size={28} color="#FFF" />}
+          backButtonComponent={() => <Icon name="chevron-thin-left" style={styles.button} size={28} color="#FFF" />}
           rightCorner={rightNavButtons}
           firstRoute={{
             name: "Bugzilla",
             leftCorner: leftNavButtons,
-            component: Home
+            component: Home,
           }}
         />
       </SideMenu>
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
   navbar: {
-    backgroundColor: '#E97D1F'
+    backgroundColor: "#E97D1F",
   },
   button: {
     marginTop: 5,
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
   rightNavButtons: {
-    flexDirection: 'row'
-  }
+    flexDirection: "row",
+  },
 });
 
 AppRegistry.registerComponent("bugzilla", () => router);

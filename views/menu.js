@@ -2,7 +2,7 @@
 import Rx from "rxjs/Rx";
 import React from "react";
 import ProfileImage from "./profile_image";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/Entypo";
 import BugList from "./bug_list";
 import Settings from "./settings";
 import {searchURL} from "../bugzilla";
@@ -13,7 +13,7 @@ import {
   ScrollView,
   View,
   Text,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 
 const window = Dimensions.get("window");
@@ -22,28 +22,28 @@ const Menu = React.createClass({
   displayName: "Menu",
 
   propTypes: {
-    toRoute: React.PropTypes.func.isRequired,
     user: React.PropTypes.shape({
       email: React.PropTypes.string.isRequired,
       real_name: React.PropTypes.string.isRequired,
-      saved_searches: React.PropTypes.array.isRequired
-    }).isRequired
+      saved_searches: React.PropTypes.array.isRequired,
+    }).isRequired,
+    toRoute: React.PropTypes.func.isRequired,
   },
 
-  goToSearch({name, url}) {
-    let source = Rx.Observable.fromPromise(searchURL(url));
+  goToSearch(data: {name: string, url: string}) {
+    let source = Rx.Observable.fromPromise(searchURL(data.url));
     this.props.toRoute({
-      name: name,
+      name: data.name,
       component: BugList,
       passProps: { source },
-      sceneConfig: null
+      sceneConfig: null,
     });
   },
 
   goToSettings() {
     this.props.toRoute({
       name: "Settings",
-      component: Settings
+      component: Settings,
     });
   },
 
@@ -51,7 +51,7 @@ const Menu = React.createClass({
     return (
       <View style={styles.menu}>
         <TouchableHighlight onPress={this.goToSettings} underlayColor="#E97D1F">
-          <Icon style={styles.settings} name="ios-gear" size={30} color="#FFF" />
+          <Icon style={styles.settings} name="cog" size={26} color="#FFF" />
         </TouchableHighlight>
         <View style={styles.header}>
           <ProfileImage style={styles.thumbnail} email={this.props.user.email} />
@@ -75,7 +75,7 @@ const Menu = React.createClass({
         </ScrollView>
       </View>
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
@@ -86,18 +86,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#4A4A4A",
     paddingLeft: 15,
     paddingTop: 30,
-    paddingRight: window.width * (1 / 3) + 15
+    paddingRight: window.width * (1 / 3) + 15,
   },
   settings: {
   },
   header: {
     alignItems: "center",
-    marginBottom: 20
+    marginBottom: 20,
   },
   username: {
     fontWeight: "100",
     fontSize: 16,
-    color: "white"
+    color: "white",
   },
   thumbnail: {
     borderRadius: 30,
@@ -105,20 +105,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: 60,
     height: 60,
-    marginBottom: 10
+    marginBottom: 10,
   },
   list: {
-    flex: 1
+    flex: 1,
   },
   item: {
     color: "white",
     fontSize: 22,
     fontWeight: "300",
     marginHorizontal: 5,
-    marginVertical: 15
+    marginVertical: 15,
   },
   selected: {
-    fontWeight: "500"
+    fontWeight: "500",
   },
   savedSearches: {
     color: "white",
@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     margin: 5,
     marginTop: 20,
-    opacity: 0.7
-  }
+    opacity: 0.7,
+  },
 });
 
 export default Menu;

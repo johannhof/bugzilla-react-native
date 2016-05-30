@@ -1,12 +1,12 @@
 /* @flow */
 import React from "react";
-import ProfileImage from '../profile_image';
-import {card} from './styles';
+import ProfileImage from "../profile_image";
+import {card} from "./styles";
 
 import {
   StyleSheet,
   Text,
-  View
+  View,
 } from "react-native";
 
 var Comments = React.createClass({
@@ -15,7 +15,7 @@ var Comments = React.createClass({
   propTypes: {
     author: React.PropTypes.string.isRequired,
     time: React.PropTypes.string,
-    text: React.PropTypes.string.isRequired
+    text: React.PropTypes.string.isRequired,
   },
 
   render() {
@@ -35,32 +35,32 @@ var Comments = React.createClass({
         </View>
       </View>
     );
-  }
+  },
 });
 
 var styles = StyleSheet.create({
   info: {
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+    alignSelf: "stretch",
+    flexDirection: "row",
+    justifyContent: "flex-start",
     padding: 10,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   thumbnail: {
     flex: 1,
     borderRadius: 10,
     marginRight: 10,
     height: 35,
-    width: 35
+    width: 35,
   },
   textContainer: {
     padding: 10,
-    alignSelf: 'stretch'
+    alignSelf: "stretch",
   },
   infoText: {
     color: "#9C9B9B",
-    marginBottom: 2
-  }
+    marginBottom: 2,
+  },
 });
 
 

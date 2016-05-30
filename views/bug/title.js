@@ -1,11 +1,11 @@
 /* @flow */
 import React from "react";
-import {card} from './styles';
+import {card} from "./styles";
 
 import {
   StyleSheet,
   Text,
-  View
+  View,
 } from "react-native";
 
 var Title = React.createClass({
@@ -16,7 +16,7 @@ var Title = React.createClass({
     product: React.PropTypes.string,
     component: React.PropTypes.string,
     status: React.PropTypes.string,
-    last_change_time: React.PropTypes.string
+    last_change_time: React.PropTypes.string,
   },
 
   render() {
@@ -32,37 +32,37 @@ var Title = React.createClass({
         </View>
       </View>
     );
-  }
+  },
 });
 
 var styles = StyleSheet.create({
   header: {
-    alignSelf: 'stretch',
-    padding: 10
+    alignSelf: "stretch",
+    padding: 10,
   },
   summary: {
-    textAlign: 'center',
+    textAlign: "center",
     fontWeight: "500",
     fontSize: 17,
-    marginBottom: 5
+    marginBottom: 5,
   },
   component: {
-    textAlign: 'center',
+    textAlign: "center",
     fontWeight: "300",
-    fontSize: 12
+    fontSize: 12,
   },
   subHeader: {
-    flexDirection: 'row',
-    alignSelf: 'stretch',
+    flexDirection: "row",
+    alignSelf: "stretch",
     padding: 5,
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
   status: {
-    fontSize: 12
+    fontSize: 12,
   },
   lastChange: {
-    fontSize: 12
-  }
+    fontSize: 12,
+  },
 });
 
 export default Title;

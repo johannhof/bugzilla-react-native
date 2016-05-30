@@ -1,27 +1,27 @@
 /* @flow */
 import React from "react";
-import BugListItem from './bug_list_item';
-import {fetchBugs} from '../bugzilla';
+import BugListItem from "./bug_list_item";
+import {fetchBugs} from "../bugzilla";
 
 import {
   ListView,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
 } from "react-native";
 
 const BugList = React.createClass({
   propTypes: {
     source: React.PropTypes.oneOfType([
       React.PropTypes.array,
-      React.PropTypes.object
+      React.PropTypes.object,
     ]).isRequired,
-    toRoute: React.PropTypes.func.isRequired
+    toRoute: React.PropTypes.func.isRequired,
   },
 
   getInitialState() {
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1.id !== row2.id
-      })
+        rowHasChanged: (row1, row2) => row1.id !== row2.id,
+      }),
     };
   },
 
@@ -29,13 +29,13 @@ const BugList = React.createClass({
     if (Array.isArray(this.props.source)) {
       fetchBugs(this.props.source).then(bugs => {
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(bugs)
+          dataSource: this.state.dataSource.cloneWithRows(bugs),
         });
       });
     } else if (this.props.source != null) {
       this.props.source.subscribe(bugs => {
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(bugs)
+          dataSource: this.state.dataSource.cloneWithRows(bugs),
         });
       });
     }
@@ -57,7 +57,7 @@ const BugList = React.createClass({
       renderRow={ bug => <BugListItem toRoute={this.props.toRoute} {...bug} /> }
       />
     );
-  }
+  },
 });
 
 export default BugList;

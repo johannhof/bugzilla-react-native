@@ -3,26 +3,26 @@ import React from "react";
 import md5 from "md5";
 
 import {
-  Image
+  Image,
 } from "react-native";
 
 var ProfileImage = React.createClass({
-  displayName: 'ProfileImage',
+  displayName: "ProfileImage",
 
   propTypes: {
     email: React.PropTypes.string.isRequired,
-    style: React.PropTypes.any
+    style: React.PropTypes.any,
   },
 
   getInitialState() {
     return {
-      hash: this._computeHash()
+      hash: this._computeHash(),
     };
   },
 
   willReceiveProps() {
     this.setState({
-      hash: this._computeHash()
+      hash: this._computeHash(),
     });
   },
 
@@ -36,7 +36,7 @@ var ProfileImage = React.createClass({
         source={{uri: `http://www.gravatar.com/avatar/${this.state.hash}?s=256`}}
         style={this.props.style} />
     );
-  }
+  },
 });
 
 export default ProfileImage;

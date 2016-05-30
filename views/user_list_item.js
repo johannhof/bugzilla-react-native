@@ -1,12 +1,12 @@
 /* @flow */
 import React from "react";
-import User from './user';
+import User from "./user";
 
 import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
 } from "react-native";
 
 const UserListItem  = React.createClass({
@@ -15,14 +15,14 @@ const UserListItem  = React.createClass({
   propTypes: {
     email: React.PropTypes.string.isRequired,
     real_name: React.PropTypes.string,
-    toRoute: React.PropTypes.func.isRequired
+    toRoute: React.PropTypes.func.isRequired,
   },
 
   _onPress: function() {
     this.props.toRoute({
-      name: `User`,
+      name: "User",
       component: User,
-      passProps: this.props
+      passProps: this.props,
     });
   },
 
@@ -39,7 +39,7 @@ const UserListItem  = React.createClass({
         </View>
       </TouchableHighlight>
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
@@ -48,31 +48,31 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     borderStyle: "solid",
     borderBottomColor: "#D6D4D4",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   detailContainer: {
-    flexDirection: 'row'
+    flexDirection: "row",
   },
   summary: {
     fontWeight: "500",
-    fontSize: 15
+    fontSize: 15,
   },
   component: {
     flex: 1,
     fontWeight: "300",
-    fontSize: 12
+    fontSize: 12,
   },
   id: {
     flex: 1,
     fontWeight: "300",
-    color: '#9C9B9B',
-    fontSize: 12
+    color: "#9C9B9B",
+    fontSize: 12,
   },
   numbers: {
     paddingRight: 5,
-    alignItems: 'flex-end',
-    flex: 2
-  }
+    alignItems: "flex-end",
+    flex: 2,
+  },
 });
 
 export default UserListItem;

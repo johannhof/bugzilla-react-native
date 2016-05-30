@@ -1,42 +1,54 @@
 /* @flow */
 import React from "react";
-import Title from './title';
-import People from './people';
-import Stats from './stats';
-import Comment from './comment';
-import {container} from './styles';
+import Title from "./title";
+import People from "./people";
+import Stats from "./stats";
+import Comment from "./comment";
+import {container} from "./styles";
+import {UserType} from "../../bugzilla";
 
 import {
   View,
   ListView,
   Text,
   ActivityIndicatorIOS,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 
 const BugView = React.createClass({
   displayName: "Bug",
 
+  propTypes: {
+    id: React.PropTypes.number.isRequired,
+    toRoute: React.PropTypes.func.isRequired,
+    assigned_to_detail: React.PropTypes.shape(UserType).isRequired,
+    creator_detail: React.PropTypes.shape(UserType).isRequired,
+    blocks: React.PropTypes.array.isRequired,
+    depends_on: React.PropTypes.array.isRequired,
+    cc_detail: React.PropTypes.array.isRequired,
+  },
+
   getInitialState() {
     return {
+      comments: [],
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
-        sectionHeaderHasChanged: (row1, row2) => row1.id !== row2.id
+        sectionHeaderHasChanged: (row1, row2) => row1.id !== row2.id,
       }).cloneWithRowsAndSections({
-        comments: ['loading']
-      }, ['comments'])
+        comments: ["loading"],
+      }, ["comments"]),
     };
   },
 
+  // $FlowFixMe: factor out comments fetching
   async componentWillMount() {
     let res = await fetch(`https://bugzilla.mozilla.org/rest/bug/${this.props.id}/comment`);
-    let {bugs} = await res.json();
+    let {bugs} : {bugs: Array<Object>} = await res.json();
+    let comments : Array<Object> = bugs[this.props.id].comments;
 
     this.setState({
-      comments: bugs[this.props.id].comments,
-      dataSource: this.state.dataSource.cloneWithRowsAndSections({
-        comments: bugs[this.props.id].comments
-      }, ['comments'])
+      comments: comments,
+      dataSource: this.state.dataSource.cloneWithRowsAndSections({comments}, ["comments"]),
     });
   },
 
@@ -50,18 +62,23 @@ const BugView = React.createClass({
     );
   },
 
-  _renderSectionHeader(sectionData, sectionID) {
+  _renderSectionHeader(_sectionData: any, sectionID: string) {
     switch (sectionID) {
-      case 'comments':
+      case "comments":
         return <Text style={styles.sectionHeader}>Comments</Text>;
-      case 'attachments':
+      case "attachments":
         return <Text style={styles.sectionHeader}>Attachments</Text>;
     }
     return null;
   },
 
-  _renderRow(rowData, sectionID) {
-    if (rowData === 'loading') {
+  _renderRow(rowData: Object | string, sectionID: string) {
+    if (typeof rowData !== "string") {
+      switch (sectionID) {
+        case "comments":
+          return <Comment {...rowData} />;
+      }
+    } else if (rowData === "loading") {
       return (
         <ActivityIndicatorIOS
           animating={true}
@@ -69,10 +86,6 @@ const BugView = React.createClass({
           size="large"
         />
       );
-    }
-    switch (sectionID) {
-      case 'comments':
-        return <Comment {...rowData} />;
     }
     return <View />;
   },
@@ -87,7 +100,7 @@ const BugView = React.createClass({
         style={container}
         />
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
@@ -95,9 +108,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 5,
     marginBottom: 10,
-    textAlign: 'center',
-    color: "#666"
-  }
+    textAlign: "center",
+    color: "#666",
+  },
 });
 
 export default BugView;

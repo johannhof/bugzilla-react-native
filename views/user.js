@@ -1,19 +1,19 @@
 /* @flow */
 import React from "react";
-import ProfileImage from './profile_image';
+import ProfileImage from "./profile_image";
 
 import {
   StyleSheet,
   Text,
-  View
+  View,
 } from "react-native";
 
 const UserView = React.createClass({
-  displayName: 'UserView',
+  displayName: "UserView",
 
   propTypes: {
     email: React.PropTypes.string.isRequired,
-    real_name: React.PropTypes.string
+    real_name: React.PropTypes.string,
   },
 
   render() {
@@ -26,13 +26,13 @@ const UserView = React.createClass({
         </View>
       </View>
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#F5FCFF",
   },
   userBox: {
     flex: 2,
@@ -42,18 +42,18 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderBottomColor: "#D6D4D4",
     borderBottomWidth: 1,
-    backgroundColor: '#F0F0F0'
+    backgroundColor: "#F0F0F0",
   },
   userBoxTitle: {
     fontSize: 22,
-    fontWeight: "300"
+    fontWeight: "300",
   },
   thumbnail: {
     borderRadius: 38,
     width: 75,
     height: 75,
-    marginBottom: 10
-  }
+    marginBottom: 10,
+  },
 });
 
 

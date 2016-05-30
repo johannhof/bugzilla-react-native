@@ -1,7 +1,7 @@
 /* @flow */
 import {AsyncStorage} from "react-native";
 
-export function loadJSON(key: string, fallback): Promise {
+export function loadJSON(key: string, fallback: any): Promise {
   return AsyncStorage.getItem(key)
     .then(function(json: ?string) {
       if (json) {
@@ -11,7 +11,7 @@ export function loadJSON(key: string, fallback): Promise {
     });
 }
 
-export function saveJSON(key: string, value) {
+export function saveJSON(key: string, value: any) {
   if (value) {
     AsyncStorage.setItem(key, JSON.stringify(value));
   } else {

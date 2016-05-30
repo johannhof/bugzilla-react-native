@@ -1,28 +1,28 @@
 /* @flow */
 import React from "react";
-import assigned from '../assigned_bugs';
-import created from '../created_bugs';
-import flags from '../flags';
+import assigned from "../assigned_bugs";
+import created from "../created_bugs";
+import flags from "../flags";
 import BugList from "./bug_list";
 import FlagList from "./flag_list";
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/Entypo";
 
 import {
   StyleSheet,
   View,
-  TabBarIOS
+  TabBarIOS,
 } from "react-native";
 
 const HomeView = React.createClass({
   displayName: "HomeView",
 
   propTypes: {
-    toRoute: React.PropTypes.func.isRequired
+    toRoute: React.PropTypes.func.isRequired,
   },
 
   getInitialState() {
     return {
-      selectedTab: "flags"
+      selectedTab: "assigned",
     };
   },
 
@@ -34,7 +34,7 @@ const HomeView = React.createClass({
           tintColor="#E97D1F">
           <Icon.TabBarItem
             title="Created"
-            iconName="ios-plus"
+            iconName="squared-plus"
             selected={this.state.selectedTab === "created"}
             onPress={() => this.setState({ selectedTab: "created" }) }>
             <View style={styles.listView}>
@@ -45,7 +45,7 @@ const HomeView = React.createClass({
           </Icon.TabBarItem>
           <Icon.TabBarItem
             title="Assigned"
-            iconName="ios-filing"
+            iconName="inbox"
             selected={this.state.selectedTab === "assigned"}
             onPress={() => this.setState({ selectedTab: "assigned" }) }>
             <View style={styles.listView}>
@@ -56,7 +56,7 @@ const HomeView = React.createClass({
           </Icon.TabBarItem>
           <Icon.TabBarItem
             title="Flags"
-            iconName="ios-flag"
+            iconName="flag"
             selected={this.state.selectedTab === "flags"}
             onPress={() => this.setState({ selectedTab: "flags" }) }>
             <View style={styles.listView}>
@@ -68,21 +68,21 @@ const HomeView = React.createClass({
         </TabBarIOS>
       </View>
     );
-  }
+  },
 });
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "#F5FCFF",
   },
   title: {
     fontSize: 22,
-    fontWeight: "300"
+    fontWeight: "300",
   },
   listView: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default HomeView;

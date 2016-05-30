@@ -1,7 +1,7 @@
 /* @flow */
 import React from "react";
 import Bug from "./bug/index";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/Entypo";
 
 import {
   StyleSheet,
@@ -35,20 +35,22 @@ const BugListItem  = React.createClass({
       <TouchableHighlight onPress={this._onPress} underlayColor="#E97D1F">
         <View style={styles.row}>
           <Text numberOfLines={1} style={[styles.summary, {
-            textDecorationLine: this.props.is_open === false ?  "line-through" : "none"
+            textDecorationLine: this.props.is_open === false ?  "line-through" : "none",
           }]}>
             {this.props.summary}
           </Text>
           <View style={styles.detailContainer}>
-            <Text style={styles.component}>
-              {this.props.component}
-            </Text>
-            <Text style={styles.id}>
-              {this.props.id}
-            </Text>
+            <View style={styles.componentID}>
+              <Text style={styles.id}>
+                {this.props.id}
+              </Text>
+              <Text style={styles.component}>
+                {this.props.component}
+              </Text>
+            </View>
             <View style={styles.numbers}>
               <Text style={styles.id}>
-                <Icon name="ios-person" size={12} color="#9C9B9B" />
+                <Icon name="users" size={10} color="#9C9B9B" />
                 {" "}
                 {this.props.cc.length}
               </Text>
@@ -78,16 +80,19 @@ var styles = StyleSheet.create({
     paddingRight: 5,
     marginBottom: 5,
   },
-  component: {
+  componentID: {
     flex: 4,
+    flexDirection: "row",
+  },
+  component: {
     fontWeight: "300",
     fontSize: 12,
   },
   id: {
-    flex: 2,
     fontWeight: "300",
     color: "#9C9B9B",
     fontSize: 12,
+    paddingRight: 5,
   },
   numbers: {
     flex: 5,
