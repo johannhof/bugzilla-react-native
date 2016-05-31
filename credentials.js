@@ -14,7 +14,7 @@ const logout = Rx.Observable.fromEvent(events, "logout").map(() => null);
 const credentials = storage
   .merge(login)
   .merge(logout)
-  .do(function(creds={}){
+  .do(function(creds={}) {
     setCredentials(creds.key, creds.email);
   })
   .do((val) => saveJSON(STORAGE_KEY, val));

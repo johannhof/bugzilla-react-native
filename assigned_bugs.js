@@ -9,7 +9,7 @@ const STORAGE_KEY = "assigned_bugs";
 const storage = Rx.Observable.from(loadJSON(STORAGE_KEY, []));
 
 const request = credentials.filter(x => x).switchMap(function({email}) {
- return fetchAssignedBugs(email);
+  return fetchAssignedBugs(email);
 });
 
 const assigned = storage
