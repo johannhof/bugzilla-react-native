@@ -7,7 +7,7 @@
     "start": "react-native start",
     "lint": "eslint .",
     "flow": "flow check --ignore-version",
-    "test": "lint && flow"
+    "test": "npm run lint && npm run flow"
   },
   "dependencies": {
     "fbemitter": "^2.0.0",
