@@ -65,13 +65,14 @@ const router = React.createClass({
     return {
       menuOpen: false,
       user: null,
+      error: null,
     };
   },
 
   componentWillMount() {
     // TODO attach off listener
     events.on("menuOpen", () => this._toggleMenu(true));
-    user.subscribe(user => this.setState({user}));
+    user.subscribe(user => this.setState({user}), err => this.setState({user: null, error: err}));
   },
 
   toRoute(options) {
@@ -85,7 +86,7 @@ const router = React.createClass({
 
   render() {
     if (!this.state.user) {
-      return <Login />;
+      return <Login error={this.state.error} />;
     }
     return (
       <SideMenu
