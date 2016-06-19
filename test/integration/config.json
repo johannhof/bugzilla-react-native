@@ -2,6 +2,8 @@
   "platformName": "iOS",
   "platformVersion": "9.3",
   "deviceName": "iPhone Simulator",
-  "app": "/Users/johann/Library/Developer/Xcode/DerivedData/bugzilla-hkdcherymxiaorfcqgluprkwpput/Build/Products/Debug-iphonesimulator/bugzilla.app"
+  "app": "/Users/johann/Library/Developer/Xcode/DerivedData/bugzilla-hkdcherymxiaorfcqgluprkwpput/Build/Products/Debug-iphonesimulator/bugzilla.app",
+  "noReset": true,
+  "fullReset": false
 }
 

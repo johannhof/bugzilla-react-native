@@ -72,7 +72,10 @@ const router = React.createClass({
   componentWillMount() {
     // TODO attach off listener
     events.on("menuOpen", () => this._toggleMenu(true));
-    user.subscribe(user => this.setState({user}), err => this.setState({user: null, error: err}));
+    user.subscribe(
+      user => this.setState({user}),
+      err => this.setState({user: null, error: err})
+    );
   },
 
   toRoute(options) {

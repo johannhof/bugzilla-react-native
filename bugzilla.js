@@ -43,6 +43,13 @@ const STATUS_OPEN = "bug_status=UNCONFIRMED&bug_status=NEW&bug_status=UNCONFIRME
 let key: ?string = null;
 let email: ?string = null;
 
+function checkForError(data) {
+  if (data.error) {
+    throw new Error(data.message);
+  }
+  return data;
+}
+
 export function setCredentials(_key: ?string, _email: ?string) {
   key = _key;
   email = _email;
@@ -51,24 +58,28 @@ export function setCredentials(_key: ?string, _email: ?string) {
 export function fetchUser(): Promise<User> {
   return fetch(`${BASE_URL}/rest/user/${email}?api_key=${key}`)
     .then(res => res.json())
+    .then(checkForError)
     .then(({users}) => users[0]);
 }
 
 export function fetchBugs(bugs: Array<String>): Promise<Array<Bug>> {
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&id=${bugs.join(",")}`)
     .then(res => res.json())
+    .then(checkForError)
     .then(({bugs}) => bugs);
 }
 
 export function fetchAssignedBugs(user: string): Promise<Array<Bug>> {
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${user}&api_key=${key}`)
     .then(res => res.json())
+    .then(checkForError)
     .then(({bugs}) => bugs);
 }
 
 export function fetchCreatedBugs(user: string): Promise<Array<Bug>> {
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&creator=${user}&api_key=${key}`)
     .then(res => res.json())
+    .then(checkForError)
     .then(({bugs}) => bugs);
 }
 
@@ -91,11 +102,13 @@ export function fetchFlags(user: string): Promise<Array<Flag>> {
 export function search(search: string): Promise<Array<Bug>> {
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&quicksearch=${search}&limit=30`)
     .then(res => res.json())
+    .then(checkForError)
     .then(({bugs}) => bugs);
 }
 
 export function searchURL(url: string): Promise<Array<Bug>> {
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${decodeURIComponent(url)}`)
     .then(res => res.json())
+    .then(checkForError)
     .then(({bugs}) => bugs);
 }

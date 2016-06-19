@@ -36,7 +36,7 @@ const LoginView = React.createClass({
       <View style={styles.container}>
         {this.props.error &&
           <Text testID="errorMessage">
-            There was an error logging you in, check if you provided the correct credentials.
+            {this.props.error.message}
           </Text>
         }
         <Text>Enter your BMO username (your email)</Text>
