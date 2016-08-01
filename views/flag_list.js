@@ -4,7 +4,7 @@ import FlagListItem from "./flag_list_item";
 
 import {
   ListView,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
 } from "react-native";
 
 const FlagList = React.createClass({
@@ -32,7 +32,7 @@ const FlagList = React.createClass({
   render() {
     if (this.state.dataSource.getRowCount() === 0) {
       return (
-        <ActivityIndicatorIOS
+        <ActivityIndicator
         animating={true}
         style={{height: 80}}
         size="large"

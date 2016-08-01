@@ -5,7 +5,7 @@ import {fetchBugs} from "../bugzilla";
 
 import {
   ListView,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
 } from "react-native";
 
 const BugList = React.createClass({
@@ -44,7 +44,7 @@ const BugList = React.createClass({
   render() {
     if (this.state.dataSource.getRowCount() === 0) {
       return (
-        <ActivityIndicatorIOS
+        <ActivityIndicator
         animating={true}
         style={{height: 80}}
         size="large"

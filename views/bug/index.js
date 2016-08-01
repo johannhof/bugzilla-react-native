@@ -11,7 +11,7 @@ import {
   View,
   ListView,
   Text,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   StyleSheet,
 } from "react-native";
 
@@ -80,7 +80,7 @@ const BugView = React.createClass({
       }
     } else if (rowData === "loading") {
       return (
-        <ActivityIndicatorIOS
+        <ActivityIndicator
           animating={true}
           style={{height: 50}}
           size="large"
