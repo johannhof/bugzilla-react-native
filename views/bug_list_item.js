@@ -22,7 +22,7 @@ const BugListItem  = React.createClass({
     toRoute: React.PropTypes.func.isRequired,
   },
 
-  _onPress: async function() {
+  _onPress: function() {
     this.props.toRoute({
       name: `Bug ${this.props.id}`,
       component: Bug,

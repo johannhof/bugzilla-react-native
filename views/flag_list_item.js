@@ -23,7 +23,7 @@ const FlagListItem  = React.createClass({
     toRoute: React.PropTypes.func.isRequired,
   },
 
-  _onPress: async function() {
+  _onPress: function() {
     this.props.toRoute({
       name: `Bug ${this.props.bug.id}`,
       component: Bug,

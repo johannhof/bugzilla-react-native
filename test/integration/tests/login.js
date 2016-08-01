@@ -1,6 +1,6 @@
 import test from "ava";
 import wd from "wd";
-import config from "./config";
+import config from "../config";
 
 let driver = wd.promiseRemote({
   host: "localhost",
@@ -15,7 +15,7 @@ test.afterEach.always(async () => {
   await driver.resetApp();
 });
 
-test.after(async () => {
+test.after.always(async () => {
   await driver.removeApp("org.reactjs.native.example.bugzilla");
   await driver.quit();
 });

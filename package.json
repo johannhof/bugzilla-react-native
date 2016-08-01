@@ -7,7 +7,10 @@
     "start": "react-native start",
     "lint": "eslint .",
     "flow": "flow check --ignore-version",
-    "test": "npm run lint && npm run flow"
+    "test": "npm run lint && npm run integration",
+    "appium": "appium --session-override",
+    "integration": "ava test/integration/tests/ --serial",
+    "build-ios": "xcodebuild -workspace ios/bugzilla.xcodeproj/project.xcworkspace -scheme bugzilla -sdk iphonesimulator9.3 CONFIGURATION=Release -derivedDataPath ./build"
   },
   "dependencies": {
     "fbemitter": "^2.0.0",
@@ -22,6 +25,7 @@
     "rxjs-es": "^5.0.0-beta.10"
   },
   "devDependencies": {
+    "appium": "^1.5.3",
     "ava": "^0.15.2",
     "babel-eslint": "^6.1.2",
     "eslint": "^3.2.0",
