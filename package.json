@@ -10,7 +10,7 @@
     "test": "npm run lint && npm run integration",
     "appium": "appium --session-override",
     "integration": "ava test/integration/tests/ --serial",
-    "build-ios": "xcodebuild -workspace ./ios/bugzilla.xcodeproj/project.xcworkspace -scheme bugzilla -sdk iphonesimulator9.3 CONFIGURATION=Release -derivedDataPath ./build"
+    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme bugzilla -sdk iphonesimulator9.3 CONFIGURATION=Release -derivedDataPath ./ios/build"
   },
   "dependencies": {
     "fbemitter": "^2.0.0",
