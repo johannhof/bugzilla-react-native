@@ -9,28 +9,28 @@
     "flow": "flow check --ignore-version",
     "test": "npm run lint && npm run integration",
     "appium": "appium --session-override",
-    "integration": "ava test/integration/tests/ --serial",
-    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme bugzilla -sdk iphonesimulator9.3 CONFIGURATION=Release -derivedDataPath ./ios/build"
+    "integration": "ava test/integration/tests/ --serial -v",
+    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -sdk iphonesimulator9.3 CONFIGURATION=Release -derivedDataPath ./ios/build"
   },
   "dependencies": {
-    "fbemitter": "^2.0.0",
-    "md5": "^2.0.0",
+    "fbemitter": "^2.1.1",
+    "md5": "^2.2.1",
     "papaparse": "^4.1.2",
-    "react": "15.2.0",
-    "react-native": "^0.30.0",
+    "react": "^15.3.1",
+    "react-native": "^0.32.0",
     "react-native-side-menu": "^0.20.0",
     "react-native-simple-router": "^0.11.1",
-    "react-native-vector-icons": "^2.0.3",
-    "rxjs": "^5.0.0-beta.10",
-    "rxjs-es": "^5.0.0-beta.10"
+    "react-native-vector-icons": "^2.1.0",
+    "rxjs": "^5.0.0-beta.11",
+    "rxjs-es": "^5.0.0-beta.11"
   },
   "devDependencies": {
     "appium": "^1.5.3",
-    "ava": "^0.15.2",
+    "ava": "^0.16.0",
     "babel-eslint": "^6.1.2",
-    "eslint": "^3.2.0",
-    "eslint-plugin-react": "^5.2.2",
-    "flow-bin": "^0.30.0",
+    "eslint": "^3.4.0",
+    "eslint-plugin-react": "^6.2.0",
+    "flow-bin": "^0.32.0",
     "json-server": "^0.8.17",
     "wd": "^0.4.0"
   }

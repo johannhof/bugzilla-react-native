@@ -15,10 +15,9 @@ before_install:
   - npm install
 
 before_script:
-  - npm start &
+  - npm run build-ios
   - npm run appium &
   - sleep 10
-  - npm run build-ios
 
 script:
   - npm test
