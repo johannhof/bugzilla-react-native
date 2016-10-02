@@ -1,6 +1,11 @@
 # bugzilla-react-native [![](https://travis-ci.org/johannhof/bugzilla-react-native.svg?branch=master)](https://travis-ci.org/johannhof/bugzilla-react-native)
 A Mobile Bugzilla Tracker
 
+## Requirements
+
+- XCode 8
+- Node.js 6
+
 ## Tests
 
 Integration tests are run using Appium and AVA.
