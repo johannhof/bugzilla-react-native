@@ -31,7 +31,7 @@ var Comments = React.createClass({
           </View>
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>{this.props.text}</Text>
+          <Text>{this.props.text}</Text>
         </View>
       </View>
     );

@@ -7,31 +7,41 @@
     "start": "react-native start",
     "lint": "eslint .",
     "flow": "flow check --ignore-version",
-    "test": "npm run lint && npm run integration",
+    "test": "npm run integration",
     "appium": "appium --session-override",
+    "mock-server": "node test/integration/server.js",
     "integration": "ava test/integration/tests/ --serial -v",
-    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -sdk iphonesimulator9.3 CONFIGURATION=Release -derivedDataPath ./ios/build"
+    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -sdk iphonesimulator9.2 CONFIGURATION=Release -derivedDataPath ./ios/build"
+  },
+  "jest": {
+    "preset": "jest-react-native",
+    "testRegex": "test/unit/.*\\.js"
   },
   "dependencies": {
-    "fbemitter": "^2.1.1",
     "md5": "^2.2.1",
     "papaparse": "^4.1.2",
-    "react": "^15.3.1",
-    "react-native": "^0.32.0",
-    "react-native-side-menu": "^0.20.0",
+    "react": "^15.3.2",
+    "react-native": "^0.34.0",
+    "react-native-config": "^0.1.0",
+    "react-native-side-menu": "^0.20.1",
     "react-native-simple-router": "^0.11.1",
     "react-native-vector-icons": "^2.1.0",
-    "rxjs": "^5.0.0-beta.11",
-    "rxjs-es": "^5.0.0-beta.11"
+    "rxjs": "^5.0.0-beta.12",
+    "rxjs-es": "^5.0.0-beta.12"
   },
   "devDependencies": {
-    "appium": "^1.5.3",
+    "appium": "^1.6.0-beta1",
     "ava": "^0.16.0",
     "babel-eslint": "^6.1.2",
-    "eslint": "^3.4.0",
-    "eslint-plugin-react": "^6.2.0",
+    "babel-preset-react-native": "^1.9.0",
+    "deviceconsole": "^1.0.1",
+    "eslint": "^3.6.0",
+    "eslint-plugin-react": "^6.3.0",
     "flow-bin": "^0.32.0",
-    "json-server": "^0.8.17",
+    "jest": "^15.1.1",
+    "jest-react-native": "^15.0.0",
+    "json-server": "^0.8.21",
+    "react-test-renderer": "^15.3.2",
     "wd": "^0.4.0"
   }
 }

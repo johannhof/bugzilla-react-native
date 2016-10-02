@@ -1,9 +1,10 @@
 {
   "platformName": "iOS",
-  "platformVersion": "9.3",
+  "platformVersion": "9.2",
   "deviceName": "iPhone Simulator",
   "app": "ios/build/Build/Products/Release-iphonesimulator/bugzilla.app",
   "noReset": true,
-  "fullReset": false
+  "fullReset": false,
+  "realDeviceLogger": "node_modules/deviceconsole"
 }
 

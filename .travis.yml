@@ -1,24 +1,26 @@
 language: objective-c
-osx_image: xcode7.3
-xcode_sdk: iphonesimulator9.3
+osx_image: xcode8.0
+xcode_sdk: iphonesimulator9.2
 
 cache:
   directories:
     - node_modules
-    - ~/.nvm
 
 before_install:
   - export NVM_DIR=~/.nvm
   - which nvm || curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
   - source ~/.nvm/nvm.sh --install
-  - nvm install 5
+  - nvm install 6
   - npm install
 
 before_script:
+  - ln -sf .env.local .env
   - npm run build-ios
   - npm run appium &
   - sleep 10
 
 script:
+  - npm run flow
+  - npm run lint
   - npm test
 

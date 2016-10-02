@@ -1,6 +1,7 @@
 /* @flow */
 import Papa from "papaparse";
 import {PropTypes} from "react";
+import Config from "react-native-config";
 
 export type Bug = {
   id: string
@@ -22,7 +23,7 @@ export const UserType = {
   name: PropTypes.string.isRequired,
 };
 
-const BASE_URL = "https://bugzilla.mozilla.org";
+let BASE_URL = Config.API_URL;
 
 const FIELDS = [
   "summary",
@@ -38,12 +39,13 @@ const FIELDS = [
   "depends_on",
 ].join(",");
 
-const STATUS_OPEN = "bug_status=UNCONFIRMED&bug_status=NEW&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED";
+const STATUS_OPEN = "bug_status=UNCONFIRMED&bug_status=CONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED";
 
 let key: ?string = null;
 let email: ?string = null;
 
 function checkForError(data) {
+  console.log(data);
   if (data.error) {
     throw new Error(data.message);
   }
@@ -56,6 +58,9 @@ export function setCredentials(_key: ?string, _email: ?string) {
 }
 
 export function fetchUser(): Promise<User> {
+  if (!email || !key) {
+    return Promise.reject("Email and API key have not been set");
+  }
   return fetch(`${BASE_URL}/rest/user/${email}?api_key=${key}`)
     .then(res => res.json())
     .then(checkForError)
@@ -70,6 +75,10 @@ export function fetchBugs(bugs: Array<String>): Promise<Array<Bug>> {
 }
 
 export function fetchAssignedBugs(user: string): Promise<Array<Bug>> {
+  if (!key) {
+    return Promise.reject("API key has not been set");
+  }
+  console.log(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${user}&api_key=${key}`);
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${user}&api_key=${key}`)
     .then(res => res.json())
     .then(checkForError)
@@ -77,6 +86,9 @@ export function fetchAssignedBugs(user: string): Promise<Array<Bug>> {
 }
 
 export function fetchCreatedBugs(user: string): Promise<Array<Bug>> {
+  if (!key) {
+    return Promise.reject("API key has not been set");
+  }
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&creator=${user}&api_key=${key}`)
     .then(res => res.json())
     .then(checkForError)

@@ -6,6 +6,9 @@ import Stats from "./stats";
 import Comment from "./comment";
 import {container} from "./styles";
 import {UserType} from "../../bugzilla";
+import Config from "react-native-config";
+
+let BASE_URL = Config.API_URL;
 
 import {
   View,
@@ -42,7 +45,7 @@ const BugView = React.createClass({
 
   // $FlowFixMe: factor out comments fetching
   async componentWillMount() {
-    let res = await fetch(`https://bugzilla.mozilla.org/rest/bug/${this.props.id}/comment`);
+    let res = await fetch(`${BASE_URL}/rest/bug/${this.props.id}/comment`);
     let {bugs} : {bugs: Array<Object>} = await res.json();
     let comments : Array<Object> = bugs[this.props.id].comments;
 

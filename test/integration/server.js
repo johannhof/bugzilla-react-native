@@ -1,9 +1,11 @@
-import jsonServer from "json-server";
+"use strict";
+
+let jsonServer = require("json-server");
 
 //const USERNAME = "bugzilla@example.com";
 const API_KEY = "valid_api_key";
 
-export function startServer(db={}) {
+module.exports = function startServer(db) {
   let server = jsonServer.create();
   let router = jsonServer.router(db);
   let middlewares = jsonServer.defaults();
@@ -27,7 +29,7 @@ export function startServer(db={}) {
 
   // Use default router
   server.use(router);
-  server.listen(3000, function () {
+  server.listen(5000, function () {
     console.log("JSON Server is running");
   });
-}
+};

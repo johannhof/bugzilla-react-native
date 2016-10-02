@@ -1,6 +1,7 @@
 import test from "ava";
 import wd from "wd";
 import config from "../config";
+import startServer from "../server";
 
 let driver = wd.promiseRemote({
   host: "localhost",
@@ -8,6 +9,7 @@ let driver = wd.promiseRemote({
 });
 
 test.before(async () => {
+  startServer({});
   await driver.init(config);
 });
 

@@ -18,7 +18,7 @@ const FlagListItem  = React.createClass({
     "Requestee": React.PropTypes.string,
     bug: React.PropTypes.shape({
       summary: React.PropTypes.string,
-      id: React.PropTypes.number,
+      id: React.PropTypes.number.isRequired,
     }).isRequired,
     toRoute: React.PropTypes.func.isRequired,
   },

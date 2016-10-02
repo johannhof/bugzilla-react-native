@@ -41,11 +41,11 @@ const LoginView = React.createClass({
         }
         <Text>Enter your BMO username (your email)</Text>
         <TextInput
-          placeholder={"Username"}
+          placeholder="Username"
           autoCorrect={false}
           enablesReturnKeyAutomatically={true}
-          returnKeyType='next'
-          autoCapitalize={'none'}
+          returnKeyType="next"
+          autoCapitalize="none"
           style={styles.textBox}
           onChangeText={email => this.setState({email})}
           onSubmitEditing={() => this.refs.password.focus() }
@@ -54,11 +54,11 @@ const LoginView = React.createClass({
         <Text>Enter your BMO API Key</Text>
         <TextInput
           ref="password"
-          placeholder={"API Key"}
+          placeholder="API Key"
           autoCorrect={false}
           enablesReturnKeyAutomatically={true}
-          returnKeyType='done'
-          autoCapitalize={'none'}
+          returnKeyType="done"
+          autoCapitalize="none"
           style={styles.textBox}
           onChangeText={key => this.setState({key})}
           onSubmitEditing={this._submit}

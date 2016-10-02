@@ -29,9 +29,7 @@ const HomeView = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <TabBarIOS
-          style={styles.tabBar}
-          tintColor="#E97D1F">
+        <TabBarIOS tintColor="#E97D1F">
           <Icon.TabBarItem
             title="Created"
             iconName="squared-plus"

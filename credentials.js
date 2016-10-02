@@ -8,7 +8,7 @@ const STORAGE_KEY = "credentials";
 
 const storage = Rx.Observable.from(loadJSON(STORAGE_KEY));
 
-const login = Rx.Observable.fromEvent(events, "login");
+const login = Rx.Observable.fromEvent(events, "login").do(() => console.log("wat"));
 const logout = Rx.Observable.fromEvent(events, "logout").map(() => null);
 
 const credentials = storage
