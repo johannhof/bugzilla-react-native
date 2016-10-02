@@ -1,6 +1,6 @@
 language: objective-c
-osx_image: xcode8.0
-xcode_sdk: iphonesimulator9.2
+osx_image: xcode8
+xcode_sdk: iphonesimulator9.3
 
 cache:
   directories:
