@@ -30,7 +30,7 @@ test.serial("should show an error message on wrong credentials", async t => {
   await password.setImmediateValue("invalid");
   await button.click();
 
-  let errorMessage = await driver.elementById("errorMessage");
+  let errorMessage = await driver.waitForElementById("errorMessage", {timeout: 3000});
   t.true(await errorMessage.isDisplayed());
   t.is(await errorMessage.text(), "The API key you specified is invalid. Please check that you typed it correctly.");
 });

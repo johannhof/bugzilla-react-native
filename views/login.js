@@ -64,7 +64,10 @@ const LoginView = React.createClass({
           onSubmitEditing={this._submit}
           value={this.state.key}
         />
-        <TouchableHighlight onPress={this._submit} underlayColor="#E97D1F">
+        <TouchableHighlight 
+          testID="Submit"
+          onPress={this._submit}
+          underlayColor="#E97D1F">
           <View style={styles.button}>
             <Text>Submit</Text>
           </View>
