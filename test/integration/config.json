@@ -1,6 +1,7 @@
 {
+  "automationName": "XCUITest",
   "platformName": "iOS",
-  "platformVersion": "9.2",
+  "platformVersion": "9.3",
   "deviceName": "iPhone Simulator",
   "app": "ios/build/Build/Products/Release-iphonesimulator/bugzilla.app",
   "noReset": true,

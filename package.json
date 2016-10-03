@@ -11,7 +11,7 @@
     "appium": "appium --session-override",
     "mock-server": "node test/integration/server.js",
     "integration": "ava test/integration/tests/ --serial -v",
-    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -sdk iphonesimulator9.3 CONFIGURATION=Release -derivedDataPath ./ios/build"
+    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6' CONFIGURATION=Release -derivedDataPath ./ios/build"
   },
   "jest": {
     "preset": "jest-react-native",
