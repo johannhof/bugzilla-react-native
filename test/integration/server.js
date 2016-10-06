@@ -1,35 +1,29 @@
-"use strict";
+import express from "express";
+import morgan from "morgan";
 
-let jsonServer = require("json-server");
-
-//const USERNAME = "bugzilla@example.com";
 const API_KEY = "valid_api_key";
 
-module.exports = function startServer(db) {
-  let server = jsonServer.create();
-  let router = jsonServer.router(db);
-  let middlewares = jsonServer.defaults();
+export function startServer() {
+  return new Promise(function(resolve) {
+    let app = express();
 
-  // Set default middlewares (logger, static, cors and no-cache)
-  server.use(middlewares);
+    app.use(morgan("dev"));
 
-  server.use(function (req, res, next) {
-    if (req.query.api_key !== API_KEY) {
-      return res.status(400).json({
-       "code" : 306,
-       "documentation" : "http://www.bugzilla.org/docs/tip/en/html/api/",
-       "error" : true,
-       "message" : "The API key you specified is invalid. Please check that you typed it correctly.",
-      });
-    }
-    next();
+    app.use(function (req, res, next) {
+      if (req.query.api_key !== API_KEY) {
+        return res.status(400).json({
+          "code" : 306,
+          "documentation" : "http://www.bugzilla.org/docs/tip/en/html/api/",
+          "error" : true,
+          "message" : "The API key you specified is invalid. Please check that you typed it correctly.",
+        });
+      }
+      next();
+    });
+
+    app.server = app.listen(5000, function () {
+      console.log("Test server is running on port 5000");
+      resolve(app);
+    });
   });
-
-  server.use("/api", router);
-
-  // Use default router
-  server.use(router);
-  server.listen(5000, function () {
-    console.log("JSON Server is running");
-  });
-};
+}

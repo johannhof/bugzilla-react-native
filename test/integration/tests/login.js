@@ -1,19 +1,22 @@
 import test from "ava";
 import wd from "wd";
 import config from "../config";
-import startServer from "../server";
+import {startServer} from "../server";
+import {login} from "../common";
 
 let driver = wd.promiseRemote({
   host: "localhost",
   port: 4723,
 });
 
+let server;
+
 test.before(async () => {
-  startServer({});
   await driver.init(config);
 });
 
 test.afterEach.always(async () => {
+  server.server && server.server.close();
   await driver.resetApp();
 });
 
@@ -23,6 +26,7 @@ test.after.always(async () => {
 });
 
 test.serial("should show an error message on wrong credentials", async t => {
+  server = await startServer();
   let username = await driver.elementById("Username");
   let password = await driver.elementById("API Key");
   let button = await driver.elementById("Submit");
@@ -30,7 +34,13 @@ test.serial("should show an error message on wrong credentials", async t => {
   await password.setImmediateValue("invalid");
   await button.click();
 
-  let errorMessage = await driver.waitForElementById("errorMessage", {timeout: 3000});
+  let errorMessage = await driver.waitForElementById("errorMessage");
   t.true(await errorMessage.isDisplayed());
   t.is(await errorMessage.text(), "The API key you specified is invalid. Please check that you typed it correctly.");
 });
+
+test.serial("should login", async t => {
+  server = await startServer();
+  await login(driver, server, t);
+});
+

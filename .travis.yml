@@ -14,6 +14,7 @@ before_install:
   - npm install
 
 before_script:
+  - ln -sf .env.local .env
   - npm run build-ios
   - npm run appium &
   - sleep 10

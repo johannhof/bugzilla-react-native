@@ -1,6 +1,7 @@
 /* @flow */
 import React from "react";
 import {events} from "../emitter";
+import {fetchUser} from "../bugzilla";
 
 import {
   StyleSheet,
@@ -21,22 +22,28 @@ const LoginView = React.createClass({
     return {
       email: "",
       key: "",
+      error: this.props.error,
     };
   },
 
-  _submit() {
-    events.trigger("login", {
-      email: this.state.email,
-      key: this.state.key,
-    });
+  async _submit() {
+    try {
+      await fetchUser(this.state.email, this.state.key);
+      events.trigger("login", {
+        email: this.state.email,
+        key: this.state.key,
+      });
+    } catch (error) {
+      this.setState({error});
+    }
   },
 
   render() {
     return (
       <View style={styles.container}>
-        {this.props.error &&
+        {this.state.error &&
           <Text testID="errorMessage">
-            {this.props.error.message}
+            {this.state.error.message}
           </Text>
         }
         <Text>Enter your BMO username (your email)</Text>

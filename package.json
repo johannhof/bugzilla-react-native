@@ -10,7 +10,7 @@
     "test": "npm run integration",
     "appium": "appium --session-override",
     "mock-server": "node test/integration/server.js",
-    "integration": "ava test/integration/tests/ --serial -v",
+    "integration": "ava --require babel-register --require babel-polyfill test/integration/tests/ --serial -v",
     "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6' CONFIGURATION=Release -derivedDataPath ./ios/build"
   },
   "jest": {
@@ -21,7 +21,7 @@
     "md5": "^2.2.1",
     "papaparse": "^4.1.2",
     "react": "^15.3.2",
-    "react-native": "^0.34.0",
+    "react-native": "^0.34.1",
     "react-native-config": "^0.1.0",
     "react-native-side-menu": "^0.20.1",
     "react-native-simple-router": "^0.11.1",
@@ -30,17 +30,20 @@
     "rxjs-es": "^5.0.0-beta.12"
   },
   "devDependencies": {
-    "appium": "^1.6.0-beta1",
+    "appium": "^1.6.0-beta3",
     "ava": "^0.16.0",
     "babel-eslint": "^6.1.2",
-    "babel-preset-react-native": "^1.9.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "babel-register": "^6.16.3",
     "deviceconsole": "^1.0.1",
     "eslint": "^3.6.0",
     "eslint-plugin-react": "^6.3.0",
+    "express": "^4.14.0",
     "flow-bin": "^0.32.0",
     "jest": "^15.1.1",
     "jest-react-native": "^15.0.0",
-    "json-server": "^0.8.21",
+    "morgan": "^1.7.0",
     "react-test-renderer": "^15.3.2",
     "wd": "^1.0.0"
   }

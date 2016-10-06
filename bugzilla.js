@@ -45,7 +45,7 @@ let key: ?string = null;
 let email: ?string = null;
 
 function checkForError(data) {
-  console.log(data);
+  console.log("Network request", data);
   if (data.error) {
     throw new Error(data.message);
   }
@@ -57,11 +57,11 @@ export function setCredentials(_key: ?string, _email: ?string) {
   email = _email;
 }
 
-export function fetchUser(): Promise<User> {
-  if (!email || !key) {
+export function fetchUser(_email: ?string = email, _key : ?string = key): Promise<User> {
+  if (!_email || !_key) {
     return Promise.reject("Email and API key have not been set");
   }
-  return fetch(`${BASE_URL}/rest/user/${email}?api_key=${key}`)
+  return fetch(`${BASE_URL}/rest/user/${_email}?api_key=${_key}`)
     .then(res => res.json())
     .then(checkForError)
     .then(({users}) => users[0]);
@@ -78,7 +78,6 @@ export function fetchAssignedBugs(user: string): Promise<Array<Bug>> {
   if (!key) {
     return Promise.reject("API key has not been set");
   }
-  console.log(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${user}&api_key=${key}`);
   return fetch(`${BASE_URL}/rest/bug?include_fields=${FIELDS}&${STATUS_OPEN}&assigned_to=${user}&api_key=${key}`)
     .then(res => res.json())
     .then(checkForError)

@@ -24,7 +24,7 @@ const leftNavButtons = React.createClass({
 
   render() {
     return (
-      <View style={styles.rightNavButtons}>
+      <View testID="menuButton" style={styles.rightNavButtons}>
         <Icon onPress={events.emit("menuOpen")} style={styles.button} name="menu" size={28} color="#FFF" />
       </View>
     );
