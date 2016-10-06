@@ -2,7 +2,7 @@ import test from "ava";
 import wd from "wd";
 import config from "../config";
 import {startServer} from "../server";
-import {login} from "../common";
+import {login, logout} from "../common";
 
 let driver = wd.promiseRemote({
   host: "localhost",
@@ -39,8 +39,22 @@ test.serial("should show an error message on wrong credentials", async t => {
   t.is(await errorMessage.text(), "The API key you specified is invalid. Please check that you typed it correctly.");
 });
 
-test.serial("should login", async t => {
+test.serial("should show an error message on network error", async t => {
+  let username = await driver.elementById("Username");
+  let password = await driver.elementById("API Key");
+  let button = await driver.elementById("Submit");
+  await username.setImmediateValue("bugzilla@example.com");
+  await password.setImmediateValue("valid_api_key");
+  await button.click();
+
+  let errorMessage = await driver.waitForElementById("errorMessage");
+  t.true(await errorMessage.isDisplayed());
+  t.is(await errorMessage.text(), "Network request failed");
+});
+
+test.serial("should login/logout", async t => {
   server = await startServer();
   await login(driver, server, t);
+  await logout(driver, server, t);
 });
 

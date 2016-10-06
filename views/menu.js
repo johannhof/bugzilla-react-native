@@ -50,7 +50,8 @@ const Menu = React.createClass({
   render() {
     return (
       <View style={styles.menu}>
-        <TouchableHighlight onPress={this.goToSettings} underlayColor="#E97D1F">
+        <TouchableHighlight testID="settingsButton"
+          onPress={this.goToSettings} underlayColor="#E97D1F">
           <Icon style={styles.settings} name="cog" size={26} color="#FFF" />
         </TouchableHighlight>
         <View style={styles.header}>

@@ -53,3 +53,18 @@ export async function login(driver, server, t) {
 
   server._router.stack.splice(-3, 3);
 }
+
+export async function logout(driver, server, t) {
+  let menuButton = await driver.elementById("menuButton");
+  menuButton.click();
+
+  let settingsButton = await driver.waitForElementById("settingsButton");
+  t.true(await settingsButton.isDisplayed());
+  settingsButton.click();
+
+  let logoutButton = await driver.waitForElementById("logoutButton");
+  logoutButton.click();
+
+  let username = await driver.waitForElementById("Username");
+  t.true(await username.isDisplayed());
+}

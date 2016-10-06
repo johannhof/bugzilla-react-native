@@ -13,7 +13,10 @@ const SettingsView = React.createClass({
 
   render() {
     return (
-      <TouchableHighlight onPress={events.emit("logout")} underlayColor="#E97D1F">
+      <TouchableHighlight
+        testID="logoutButton"
+        onPress={events.emit("logout")}
+        underlayColor="#E97D1F">
         <View>
           <Text>Log out</Text>
         </View>
