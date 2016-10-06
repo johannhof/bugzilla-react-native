@@ -7,7 +7,8 @@
     "start": "react-native start",
     "lint": "eslint .",
     "flow": "flow check --ignore-version",
-    "test": "npm run integration",
+    "jest": "jest",
+    "test": "jest && npm run integration",
     "appium": "appium --session-override",
     "mock-server": "node test/integration/server.js",
     "integration": "ava --require babel-register --require babel-polyfill test/integration/tests/ --serial -v",
@@ -15,7 +16,7 @@
   },
   "jest": {
     "preset": "jest-react-native",
-    "testRegex": "test/unit/.*\\.js"
+    "testRegex": "test/unit/.*\\.test\\.js$"
   },
   "dependencies": {
     "md5": "^2.2.1",

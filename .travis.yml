@@ -22,5 +22,6 @@ before_script:
 script:
   - npm run flow
   - npm run lint
-  - npm test
+  - npm run jest
+  - npm run integration
 
