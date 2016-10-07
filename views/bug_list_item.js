@@ -62,7 +62,7 @@ const BugListItem  = React.createClass({
   },
 });
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   row: {
     overflow: "hidden",
     paddingVertical: 15,

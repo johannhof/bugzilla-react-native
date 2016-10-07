@@ -43,6 +43,7 @@ const rightNavButtons = React.createClass({
       name: "Search",
       component: Search,
       titleComponent: SearchBar,
+      rightCorner: () => <View />,
     });
   },
 
