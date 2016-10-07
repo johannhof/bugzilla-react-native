@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   empty: {
     flex: 1,
     paddingTop: 20,
-    //justifyContent: "center",
     alignItems: "center",
   },
   emptyText: {
