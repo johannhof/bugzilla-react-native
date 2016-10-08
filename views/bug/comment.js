@@ -9,11 +9,11 @@ import {
   View,
 } from "react-native";
 
-var Comments = React.createClass({
-  displayName: "Comments",
-  
+var Comment = React.createClass({
+  displayName: "Comment",
+
   propTypes: {
-    author: React.PropTypes.string.isRequired,
+    creator: React.PropTypes.string.isRequired,
     time: React.PropTypes.string,
     text: React.PropTypes.string.isRequired,
   },
@@ -23,10 +23,10 @@ var Comments = React.createClass({
       <View style={card}>
         <View style={styles.info}>
           <View>
-            <ProfileImage email={this.props.author} style={styles.thumbnail} />
+            <ProfileImage email={this.props.creator} style={styles.thumbnail} />
           </View>
           <View>
-            <Text style={styles.infoText}>{this.props.author}</Text>
+            <Text style={styles.infoText}>{this.props.creator}</Text>
             <Text style={styles.infoText}>{this.props.time}</Text>
           </View>
         </View>
@@ -64,4 +64,4 @@ var styles = StyleSheet.create({
 });
 
 
-export default Comments;
+export default Comment;

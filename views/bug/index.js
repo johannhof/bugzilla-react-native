@@ -5,10 +5,7 @@ import People from "./people";
 import Stats from "./stats";
 import Comment from "./comment";
 import {container} from "./styles";
-import {UserType} from "../../bugzilla";
-import Config from "react-native-config";
-
-let BASE_URL = Config.API_URL;
+import {UserType, fetchComments} from "../../bugzilla";
 
 import {
   View,
@@ -33,7 +30,6 @@ const BugView = React.createClass({
 
   getInitialState() {
     return {
-      comments: [],
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
         sectionHeaderHasChanged: (row1, row2) => row1.id !== row2.id,
@@ -43,15 +39,11 @@ const BugView = React.createClass({
     };
   },
 
-  // $FlowFixMe: factor out comments fetching
-  async componentWillMount() {
-    let res = await fetch(`${BASE_URL}/rest/bug/${this.props.id}/comment`);
-    let {bugs} : {bugs: Array<Object>} = await res.json();
-    let comments : Array<Object> = bugs[this.props.id].comments;
-
-    this.setState({
-      comments: comments,
-      dataSource: this.state.dataSource.cloneWithRowsAndSections({comments}, ["comments"]),
+  componentWillMount() {
+    fetchComments(this.props.id).then(comments => {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRowsAndSections({comments}, ["comments"]),
+      });
     });
   },
 

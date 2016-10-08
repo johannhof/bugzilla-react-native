@@ -17,6 +17,12 @@ export type User = {
   real_name: string,
 };
 
+export type Comment = {
+  creator: string,
+  text: string,
+  time: string,
+};
+
 export const UserType = {
   email: PropTypes.string.isRequired,
   real_name: PropTypes.string.isRequired,
@@ -122,4 +128,11 @@ export function searchURL(url: string): Promise<Array<Bug>> {
     .then(res => res.json())
     .then(checkForError)
     .then(({bugs}) => bugs);
+}
+
+export function fetchComments(id: number): Promise<Array<Comment>> {
+  return fetch(`${BASE_URL}/rest/bug/${id}/comment`)
+    .then(res => res.json())
+    .then(checkForError)
+    .then(({bugs}) => bugs[id].comments);
 }

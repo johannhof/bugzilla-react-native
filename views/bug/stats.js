@@ -23,36 +23,42 @@ var People = React.createClass({
   },
 
   _onPressBlocks() {
-    this.props.toRoute({
-      name: `${this.props.id} blocks`,
-      component: BugList,
-      passProps: {
-        source: this.props.blocks,
-        toRoute: this.props.toRoute,
-      },
-    });
+    if (this.props.blocks.length) {
+      this.props.toRoute({
+        name: `${this.props.id} blocks`,
+        component: BugList,
+        passProps: {
+          source: this.props.blocks,
+          toRoute: this.props.toRoute,
+        },
+      });
+    }
   },
 
   _onPressDepends() {
-    this.props.toRoute({
-      name: `${this.props.id} depends on`,
-      component: BugList,
-      passProps: {
-        source: this.props.depends_on,
-        toRoute: this.props.toRoute,
-      },
-    });
+    if (this.props.depends_on.length) {
+      this.props.toRoute({
+        name: `${this.props.id} depends on`,
+        component: BugList,
+        passProps: {
+          source: this.props.depends_on,
+          toRoute: this.props.toRoute,
+        },
+      });
+    }
   },
 
   _onPressCC() {
-    this.props.toRoute({
-      name: `${this.props.id} CC`,
-      component: UserList,
-      passProps: {
-        users: this.props.cc_detail,
-        toRoute: this.props.toRoute,
-      },
-    });
+    if (this.props.cc_detail.length) {
+      this.props.toRoute({
+        name: `${this.props.id} CC`,
+        component: UserList,
+        passProps: {
+          users: this.props.cc_detail,
+          toRoute: this.props.toRoute,
+        },
+      });
+    }
   },
 
   render() {
