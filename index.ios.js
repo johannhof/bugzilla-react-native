@@ -12,6 +12,7 @@ import {events} from "./emitter";
 import SearchBar from "./views/navigation/search_bar";
 
 import {
+  Navigator,
   AppRegistry,
   StyleSheet,
   TouchableHighlight,
@@ -99,6 +100,7 @@ const router = React.createClass({
         menu={<Menu toRoute={this.toRoute} user={this.state.user} />} >
         <Router
           ref="router"
+          sceneConfig={Navigator.SceneConfigs.HorizontalSwipeJump}
           headerStyle={styles.navbar}
           backButtonComponent={() => <Icon name="chevron-thin-left" style={styles.button} size={28} color="#FFF" />}
           rightCorner={rightNavButtons}
