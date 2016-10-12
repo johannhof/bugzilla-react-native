@@ -7,13 +7,11 @@ cache:
     - node_modules
 
 before_install:
-  - export NVM_DIR=~/.nvm
-  - which nvm || curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
-  - source ~/.nvm/nvm.sh --install
-  - nvm install 6
-  - npm install
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - yarn install
 
 before_script:
+  - npm run flow-start
   - ln -sf .env.local .env
   - npm run build-ios
   - npm run appium &

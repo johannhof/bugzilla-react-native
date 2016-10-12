@@ -6,6 +6,7 @@
   "scripts": {
     "start": "react-native start",
     "lint": "eslint .",
+    "flow-start": "flow start --ignore-version",
     "flow": "flow check --ignore-version",
     "jest": "jest --coverage",
     "test": "jest && npm run integration",
