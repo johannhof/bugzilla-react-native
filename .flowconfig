@@ -24,8 +24,6 @@
 .*/Libraries/react-native/ReactNative.js
 .*/node_modules/jest-runtime/build/__tests__/.*
 
-.*/test/integration
-
 [include]
 
 [libs]
