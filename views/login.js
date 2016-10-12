@@ -49,6 +49,7 @@ const LoginView = React.createClass({
         <Text>Enter your BMO username (your email)</Text>
         <TextInput
           placeholder="Username"
+          testID="usernameInput"
           autoCorrect={false}
           enablesReturnKeyAutomatically={true}
           returnKeyType="next"
@@ -62,6 +63,7 @@ const LoginView = React.createClass({
         <TextInput
           ref="password"
           placeholder="API Key"
+          testID="apiKeyInput"
           autoCorrect={false}
           enablesReturnKeyAutomatically={true}
           returnKeyType="done"
@@ -71,8 +73,8 @@ const LoginView = React.createClass({
           onSubmitEditing={this._submit}
           value={this.state.key}
         />
-        <TouchableHighlight 
-          testID="Submit"
+        <TouchableHighlight
+          testID="submitButton"
           onPress={this._submit}
           underlayColor="#E97D1F">
           <View style={styles.button}>

@@ -40,9 +40,9 @@ export async function login(driver, server, t) {
 
   server.use("*", () => t.fail("Unexpected API call"));
 
-  let username = await driver.elementById("Username");
-  let password = await driver.elementById("API Key");
-  let button = await driver.elementById("Submit");
+  let username = await driver.elementById("usernameInput");
+  let password = await driver.elementById("apiKeyInput");
+  let button = await driver.elementById("submitButton");
   await username.setImmediateValue("bugzilla@example.com");
   await password.setImmediateValue("valid_api_key");
   await button.click();

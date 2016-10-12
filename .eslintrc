@@ -9,6 +9,9 @@
   "plugins": [
     "react"
   ],
+  "globals": {
+    "global": true
+  },
   "rules": {
     "comma-dangle": [1, "always-multiline"],
     "camelcase": [1, {"properties": "never"}],

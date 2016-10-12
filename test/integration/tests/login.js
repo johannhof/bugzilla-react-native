@@ -27,9 +27,9 @@ test.after.always(async () => {
 
 test.serial("should show an error message on wrong credentials", async t => {
   server = await startServer();
-  let username = await driver.elementById("Username");
-  let password = await driver.elementById("API Key");
-  let button = await driver.elementById("Submit");
+  let username = await driver.elementById("usernameInput");
+  let password = await driver.elementById("apiKeyInput");
+  let button = await driver.elementById("submitButton");
   await username.setImmediateValue("test");
   await password.setImmediateValue("invalid");
   await button.click();
@@ -40,9 +40,9 @@ test.serial("should show an error message on wrong credentials", async t => {
 });
 
 test.serial("should show an error message on network error", async t => {
-  let username = await driver.elementById("Username");
-  let password = await driver.elementById("API Key");
-  let button = await driver.elementById("Submit");
+  let username = await driver.elementById("usernameInput");
+  let password = await driver.elementById("apiKeyInput");
+  let button = await driver.elementById("submitButton");
   await username.setImmediateValue("bugzilla@example.com");
   await password.setImmediateValue("valid_api_key");
   await button.click();
