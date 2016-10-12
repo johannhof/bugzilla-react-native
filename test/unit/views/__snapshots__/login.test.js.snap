@@ -6,7 +6,7 @@ exports[`test renders correctly 1`] = `
       "backgroundColor": "#F5FCFF",
       "flex": 1,
       "justifyContent": "center",
-      "marginHorizontal": 10
+      "marginHorizontal": 10,
     }
   }>
   <Text
@@ -19,8 +19,8 @@ exports[`test renders correctly 1`] = `
     autoCapitalize="none"
     autoCorrect={false}
     enablesReturnKeyAutomatically={true}
-    onChangeText={[Function onChangeText]}
-    onSubmitEditing={[Function onSubmitEditing]}
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
     placeholder="Username"
     returnKeyType="next"
     style={
@@ -30,7 +30,7 @@ exports[`test renders correctly 1`] = `
         "height": 40,
         "marginBottom": 10,
         "marginTop": 5,
-        "paddingHorizontal": 5
+        "paddingHorizontal": 5,
       }
     }
     value="" />
@@ -44,8 +44,8 @@ exports[`test renders correctly 1`] = `
     autoCapitalize="none"
     autoCorrect={false}
     enablesReturnKeyAutomatically={true}
-    onChangeText={[Function onChangeText]}
-    onSubmitEditing={[Function bound _submit]}
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
     placeholder="API Key"
     returnKeyType="done"
     style={
@@ -55,7 +55,7 @@ exports[`test renders correctly 1`] = `
         "height": 40,
         "marginBottom": 10,
         "marginTop": 5,
-        "paddingHorizontal": 5
+        "paddingHorizontal": 5,
       }
     }
     value="" />
@@ -66,18 +66,18 @@ exports[`test renders correctly 1`] = `
     accessible={true}
     hitSlop={undefined}
     onLayout={undefined}
-    onResponderGrant={[Function bound touchableHandleResponderGrant]}
-    onResponderMove={[Function bound touchableHandleResponderMove]}
-    onResponderRelease={[Function bound touchableHandleResponderRelease]}
-    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Array [
         Object {
-          "backgroundColor": "transparent"
+          "backgroundColor": "transparent",
         },
-        undefined
+        undefined,
       ]
     }
     testID="Submit">
@@ -90,7 +90,7 @@ exports[`test renders correctly 1`] = `
           "flex": 1,
           "height": 30,
           "justifyContent": "center",
-          "paddingHorizontal": 50
+          "paddingHorizontal": 50,
         }
       }>
       <Text
@@ -112,7 +112,7 @@ exports[`test renders errors correctly 1`] = `
       "backgroundColor": "#F5FCFF",
       "flex": 1,
       "justifyContent": "center",
-      "marginHorizontal": 10
+      "marginHorizontal": 10,
     }
   }>
   <Text
@@ -132,8 +132,8 @@ exports[`test renders errors correctly 1`] = `
     autoCapitalize="none"
     autoCorrect={false}
     enablesReturnKeyAutomatically={true}
-    onChangeText={[Function onChangeText]}
-    onSubmitEditing={[Function onSubmitEditing]}
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
     placeholder="Username"
     returnKeyType="next"
     style={
@@ -143,7 +143,7 @@ exports[`test renders errors correctly 1`] = `
         "height": 40,
         "marginBottom": 10,
         "marginTop": 5,
-        "paddingHorizontal": 5
+        "paddingHorizontal": 5,
       }
     }
     value="" />
@@ -157,8 +157,8 @@ exports[`test renders errors correctly 1`] = `
     autoCapitalize="none"
     autoCorrect={false}
     enablesReturnKeyAutomatically={true}
-    onChangeText={[Function onChangeText]}
-    onSubmitEditing={[Function bound _submit]}
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
     placeholder="API Key"
     returnKeyType="done"
     style={
@@ -168,7 +168,7 @@ exports[`test renders errors correctly 1`] = `
         "height": 40,
         "marginBottom": 10,
         "marginTop": 5,
-        "paddingHorizontal": 5
+        "paddingHorizontal": 5,
       }
     }
     value="" />
@@ -179,18 +179,18 @@ exports[`test renders errors correctly 1`] = `
     accessible={true}
     hitSlop={undefined}
     onLayout={undefined}
-    onResponderGrant={[Function bound touchableHandleResponderGrant]}
-    onResponderMove={[Function bound touchableHandleResponderMove]}
-    onResponderRelease={[Function bound touchableHandleResponderRelease]}
-    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Array [
         Object {
-          "backgroundColor": "transparent"
+          "backgroundColor": "transparent",
         },
-        undefined
+        undefined,
       ]
     }
     testID="Submit">
@@ -203,7 +203,7 @@ exports[`test renders errors correctly 1`] = `
           "flex": 1,
           "height": 30,
           "justifyContent": "center",
-          "paddingHorizontal": 50
+          "paddingHorizontal": 50,
         }
       }>
       <Text

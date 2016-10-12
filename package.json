@@ -12,7 +12,8 @@
     "appium": "appium --session-override",
     "mock-server": "node test/integration/server.js",
     "integration": "ava --require babel-register --require babel-polyfill test/integration/tests/ --serial -v",
-    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6' CONFIGURATION=Release -derivedDataPath ./ios/build"
+    "build-ios": "xcodebuild -project ./ios/bugzilla.xcodeproj -scheme release -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6' CONFIGURATION=Release -derivedDataPath ./ios/build",
+    "ios": "react-native run-ios --simulator=\"iPhone 6\""
   },
   "jest": {
     "preset": "jest-react-native",
