@@ -10,3 +10,8 @@ it("renders correctly", () => {
  const tree = renderer.create(<Login />).toJSON();
  expect(tree).toMatchSnapshot();
 });
+
+it("renders errors correctly", () => {
+ const tree = renderer.create(<Login error={{message: "What the hell"}} />).toJSON();
+ expect(tree).toMatchSnapshot();
+});

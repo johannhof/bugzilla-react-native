@@ -103,3 +103,116 @@ exports[`test renders correctly 1`] = `
   </View>
 </View>
 `;
+
+exports[`test renders errors correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5FCFF",
+      "flex": 1,
+      "justifyContent": "center",
+      "marginHorizontal": 10
+    }
+  }>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    testID="errorMessage">
+    What the hell
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail">
+    Enter your BMO username (your email)
+  </Text>
+  <TextInput
+    autoCapitalize="none"
+    autoCorrect={false}
+    enablesReturnKeyAutomatically={true}
+    onChangeText={[Function onChangeText]}
+    onSubmitEditing={[Function onSubmitEditing]}
+    placeholder="Username"
+    returnKeyType="next"
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderWidth": 1,
+        "height": 40,
+        "marginBottom": 10,
+        "marginTop": 5,
+        "paddingHorizontal": 5
+      }
+    }
+    value="" />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail">
+    Enter your BMO API Key
+  </Text>
+  <TextInput
+    autoCapitalize="none"
+    autoCorrect={false}
+    enablesReturnKeyAutomatically={true}
+    onChangeText={[Function onChangeText]}
+    onSubmitEditing={[Function bound _submit]}
+    placeholder="API Key"
+    returnKeyType="done"
+    style={
+      Object {
+        "borderColor": "gray",
+        "borderWidth": 1,
+        "height": 40,
+        "marginBottom": 10,
+        "marginTop": 5,
+        "paddingHorizontal": 5
+      }
+    }
+    value="" />
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function bound touchableHandleResponderGrant]}
+    onResponderMove={[Function bound touchableHandleResponderMove]}
+    onResponderRelease={[Function bound touchableHandleResponderRelease]}
+    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent"
+        },
+        undefined
+      ]
+    }
+    testID="Submit">
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderColor": "gray",
+          "borderWidth": 1,
+          "flex": 1,
+          "height": 30,
+          "justifyContent": "center",
+          "paddingHorizontal": 50
+        }
+      }>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail">
+        Submit
+      </Text>
+    </View>
+  </View>
+</View>
+`;
