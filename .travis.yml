@@ -8,8 +8,8 @@ cache:
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - yarn install
   - export PATH="$HOME/.yarn/bin:$PATH"
+  - yarn install
 
 before_script:
   - npm run flow-start
