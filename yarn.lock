@@ -6248,9 +6248,9 @@ react-native-side-menu@^0.20.1:
   version "0.20.1"
   resolved "https://registry.yarnpkg.com/react-native-side-menu/-/react-native-side-menu-0.20.1.tgz#df21b4bb9d8a1aa3bae53d74ddf8a739eb59bfc5"
 
-"react-native-simple-router@git://github.com/johannhof/react-native-simple-router.git":
-  version "0.11.1"
-  resolved "git://github.com/johannhof/react-native-simple-router.git#985b89621fc373b494174d5ebd8af7e3ec64a62a"
+react-native-simple-router@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-simple-router/-/react-native-simple-router-0.12.0.tgz#eb11d49771ffc9f08f61bbbbd218e58e5086fc3a"
   dependencies:
     aspect-js "^1.0.3"
     underscore "^1.8.3"
